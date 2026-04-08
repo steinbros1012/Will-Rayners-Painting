@@ -1,0 +1,18 @@
+---
+import Analytics from '@vercel/analytics/astro';
+import { Head } from "@/components/Head";
+import AppRouter from "@/components/Router";
+import "@/styles/global.css";
+---
+
+<html lang="en" class="w-full h-full">
+  <head>
+    <Head />
+    <Analytics />
+  </head>
+  <body class="w-full h-full">
+    <div id="root" class="w-full h-full">
+      <AppRouter client:only="react" />
+    </div>
+  </body>
+</html>
