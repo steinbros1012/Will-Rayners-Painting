@@ -94,6 +94,22 @@ export const nickCapponyProject = {
   ],
 } as const;
 
+export const ceilingWallRepairProject = {
+  title: "Ceiling, Wall Repair & Repaint",
+  location: "Mississippi",
+  summary:
+    "A major repair and repaint project focused on damaged ceilings, patched wall surfaces, seam repair, and a clean final coat that brought the entire room back together.",
+  photos: [
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/01-wall-repair-before.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/03-ceiling-damage-before.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/06-ceiling-skim-progress.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/08-wall-corner-progress.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/10-finished-room-angle-1.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/11-finished-room-angle-2.png",
+    "/images/will-rayners/jobs/ceiling-wall-repair-repaint/12-finished-room-angle-3.png",
+  ],
+} as const;
+
 export const projectGallery: ProjectGallery[] = [
   {
     _id: "wr-project-nick-cappony",
@@ -103,6 +119,16 @@ export const projectGallery: ProjectGallery[] = [
     projectDescription:
       "This featured Will Rayners project included an exterior repaint, trim and window detail work, garage and entry updates, and carpentry improvements that brought the entire home together.",
     projectLocation: "Central Mississippi",
+    dateCompleted: "2026-04-08",
+  },
+  {
+    _id: "wr-project-ceiling-wall-repair",
+    projectTitle: "Ceiling, Wall Repair & Repaint",
+    beforePhoto: "/images/will-rayners/jobs/ceiling-wall-repair-repaint/01-wall-repair-before.png",
+    afterPhoto: "/images/will-rayners/jobs/ceiling-wall-repair-repaint/10-finished-room-angle-1.png",
+    projectDescription:
+      "This repair-focused project covered damaged ceilings, patched wall sections, seam repair, and a full repaint that left the room looking clean, bright, and finished again.",
+    projectLocation: "Mississippi",
     dateCompleted: "2026-04-08",
   },
   {

@@ -1,20 +1,145 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Phone } from 'lucide-react';
 import { format } from 'date-fns';
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ProjectGallery } from '@/entities';
-import { nickCapponyProject, projectGallery, siteImages } from '@/data/site-content';
+import {
+  ceilingWallRepairProject,
+  nickCapponyProject,
+  projectGallery,
+  siteImages,
+} from '@/data/site-content';
+
+type InteractiveProject = {
+  title: string;
+  location: string;
+  summary: string;
+  photos: readonly string[];
+};
+
+type InteractiveProjectCardProps = {
+  eyebrow: string;
+  highlights: string[];
+  project: InteractiveProject;
+};
+
+function InteractiveProjectCard({ eyebrow, highlights, project }: InteractiveProjectCardProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activePhoto = project.photos[activeIndex] || siteImages.galleryFallback;
+
+  const showPrevious = () => {
+    setActiveIndex((current) => (current === 0 ? project.photos.length - 1 : current - 1));
+  };
+
+  const showNext = () => {
+    setActiveIndex((current) => (current === project.photos.length - 1 ? 0 : current + 1));
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_rgba(15,23,32,0.08)]"
+    >
+      <div className="grid gap-0 lg:grid-cols-[0.78fr_1.22fr]">
+        <div className="bg-[#0f1720] p-8 text-white md:p-10 lg:p-12">
+          <p className="mb-4 font-paragraph text-sm font-semibold uppercase tracking-[0.28em] text-[#f0c27b]">
+            {eyebrow}
+          </p>
+          <h2 className="mb-4 font-heading text-4xl leading-tight lg:text-5xl">
+            {project.title}
+          </h2>
+          <p className="mb-5 font-paragraph text-lg leading-8 text-white/82">
+            {project.summary}
+          </p>
+          <p className="mb-8 font-paragraph text-sm uppercase tracking-[0.22em] text-white/55">
+            {project.location}
+          </p>
+          <div className="space-y-3 font-paragraph text-sm leading-7 text-white/82">
+            {highlights.map((highlight) => (
+              <p key={highlight}>{highlight}</p>
+            ))}
+          </div>
+        </div>
+
+        <div className="bg-[#efe7db] p-4 md:p-5">
+          <div className="overflow-hidden rounded-[1.5rem] bg-white shadow-[0_18px_40px_rgba(15,23,32,0.08)]">
+            <div className="aspect-[4/3]">
+              <Image
+                src={activePhoto}
+                alt={`${project.title} gallery view ${activeIndex + 1}`}
+                width={1200}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <div className="font-paragraph text-sm font-medium uppercase tracking-[0.2em] text-[#2c4468]">
+              Photo {String(activeIndex + 1).padStart(2, '0')} / {String(project.photos.length).padStart(2, '0')}
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={showPrevious}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d1c1a7] bg-white text-foreground transition-colors hover:bg-[#f8f1e7]"
+                aria-label={`Previous ${project.title} photo`}
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </button>
+              <button
+                type="button"
+                onClick={showNext}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d1c1a7] bg-white text-foreground transition-colors hover:bg-[#f8f1e7]"
+                aria-label={`Next ${project.title} photo`}
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-4 gap-3 md:grid-cols-5 xl:grid-cols-7">
+            {project.photos.map((photo, index) => (
+              <button
+                key={photo}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                className={`overflow-hidden rounded-2xl border-2 transition-all ${
+                  activeIndex === index
+                    ? 'border-accent-gold shadow-[0_12px_30px_rgba(240,194,123,0.35)]'
+                    : 'border-transparent hover:border-[#d1c1a7]'
+                }`}
+                aria-label={`Show ${project.title} photo ${index + 1}`}
+              >
+                <div className="aspect-square">
+                  <Image
+                    src={photo}
+                    alt={`${project.title} thumbnail ${index + 1}`}
+                    width={220}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function GalleryPage() {
-  const [projects, setProjects] = useState<ProjectGallery[]>([]);
-
-  useEffect(() => {
-    setProjects(projectGallery);
-  }, []);
+  const projects: ProjectGallery[] = projectGallery.filter(
+    (project) =>
+      project._id !== 'wr-project-nick-cappony' &&
+      project._id !== 'wr-project-ceiling-wall-repair',
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -40,58 +165,49 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="pb-8 pt-12 lg:pb-12 lg:pt-16">
+      <section className="pb-6 pt-12 lg:pb-8 lg:pt-16">
         <div className="mx-auto max-w-[100rem] px-6 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="overflow-hidden rounded-[2rem] bg-white shadow-[0_24px_80px_rgba(15,23,32,0.08)]"
-          >
-            <div className="grid gap-0 lg:grid-cols-[0.9fr_1.1fr]">
-              <div className="bg-[#0f1720] p-8 text-white md:p-10 lg:p-14">
-                <p className="mb-4 font-paragraph text-sm font-semibold uppercase tracking-[0.28em] text-[#f0c27b]">
-                  Featured Job
-                </p>
-                <h2 className="mb-4 font-heading text-4xl leading-tight lg:text-6xl">
-                  {nickCapponyProject.title}
-                </h2>
-                <p className="mb-6 font-paragraph text-lg leading-8 text-white/82">
-                  {nickCapponyProject.summary}
-                </p>
-                <p className="mb-8 font-paragraph text-sm uppercase tracking-[0.22em] text-white/55">
-                  {nickCapponyProject.location}
-                </p>
-                <div className="space-y-3 font-paragraph text-sm text-white/82">
-                  <p>Nick&apos;s review called out fast response time, a clear estimate, strong communication, and a crew that delivered excellent work.</p>
-                  <p>This project now anchors the gallery as a real Will Rayners job, showing the exterior from multiple angles and the detail work around trim, windows, garage, and doors.</p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3 bg-[#efe7db] p-4 md:grid-cols-3 md:p-5">
-                {nickCapponyProject.photos.map((photo, index) => (
-                  <div
-                    key={photo}
-                    className={`${index === 0 ? 'md:col-span-2 md:row-span-2' : ''} overflow-hidden rounded-2xl bg-white`}
-                  >
-                    <div className={index === 0 ? 'aspect-[4/3] md:aspect-[8/6]' : 'aspect-[4/3]'}>
-                      <Image
-                        src={photo}
-                        alt={`Nick Cappony project gallery photo ${index + 1}`}
-                        width={900}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+          <div className="mb-8">
+            <p className="mb-3 font-paragraph text-xs font-semibold uppercase tracking-[0.3em] text-accent-gold">
+              Interactive Case Studies
+            </p>
+            <h2 className="max-w-3xl font-heading text-4xl leading-tight text-foreground lg:text-6xl">
+              Click through Will&apos;s featured work without scrolling through oversized photo walls.
+            </h2>
+          </div>
+
+          <div className="flex flex-col gap-8 lg:gap-10">
+            <InteractiveProjectCard
+              eyebrow="Featured Job"
+              project={nickCapponyProject}
+              highlights={[
+                "Nick's review called out fast response time, a clear estimate, strong communication, and a crew that delivered excellent work.",
+                'This exterior project shows the home from multiple finished angles, plus detail work around trim, windows, garage, and doors.',
+              ]}
+            />
+
+            <InteractiveProjectCard
+              eyebrow="Repair & Repaint"
+              project={ceilingWallRepairProject}
+              highlights={[
+                'This job moved from visible ceiling and wall damage into patched, blended, and repainted surfaces that feel clean again.',
+                'I focused the gallery on the strongest progress and finished-room shots so visitors can click through the story without the page getting too heavy.',
+              ]}
+            />
+          </div>
         </div>
       </section>
 
       <section className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-[100rem] px-6 lg:px-16">
+          <div className="mb-10 max-w-3xl">
+            <p className="mb-3 font-paragraph text-xs font-semibold uppercase tracking-[0.3em] text-accent-gold">
+              More Transformations
+            </p>
+            <h2 className="font-heading text-4xl leading-tight text-foreground lg:text-5xl">
+              Before-and-after projects from the rest of the portfolio.
+            </h2>
+          </div>
           <div className="flex flex-col gap-16 lg:gap-24">
             {projects.map((project, index) => (
               <motion.div
@@ -101,14 +217,9 @@ export default function GalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                {/*
-                  Nick's project is a multi-photo case study, not a before/after pair.
-                  The rest of the portfolio items here are true before/after transformations.
-                */}
                 {(() => {
-                  const isBeforeAfter = project._id !== 'wr-project-nick-cappony';
-                  const leftLabel = isBeforeAfter ? 'Before' : 'View 1';
-                  const rightLabel = isBeforeAfter ? 'After' : 'View 2';
+                  const leftLabel = 'Before';
+                  const rightLabel = 'After';
                   const leftAlt = `${project.projectTitle} — ${leftLabel}`;
                   const rightAlt = `${project.projectTitle} — ${rightLabel}`;
 
