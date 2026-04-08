@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Phone, MapPin, CheckCircle } from 'lucide-react';
+import { Phone, MapPin, CheckCircle2, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useState } from 'react';
@@ -31,37 +31,24 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
     try {
       const response = await fetch('/api/send-contact-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-      if (!response.ok) {
-        throw new Error('Failed to send contact request');
-      }
-
+      if (!response.ok) throw new Error('Failed to send');
       setIsSubmitted(true);
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to send your request. Please try again or call us directly at (601) 260-0061.');
+      alert('Failed to send your request. Please try again or call us at (601) 260-0061.');
     } finally {
       setIsSubmitting(false);
     }
-    
-    // Reset form after 5 seconds
+
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        address: '',
-        serviceNeeded: '',
-        projectDetails: '',
-        preferredTimeline: '',
-      });
+      setFormData({ name: '', phone: '', email: '', address: '', serviceNeeded: '', projectDetails: '', preferredTimeline: '' });
     }, 5000);
   };
 
@@ -72,117 +59,142 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="w-full max-w-[120rem] mx-auto px-6 lg:px-20 pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="max-w-[100rem] mx-auto text-center">
+
+      {/* ─── SPLIT LAYOUT ─── */}
+      <div className="min-h-screen grid lg:grid-cols-[1fr_1.2fr] pt-[65px]">
+
+        {/* Left: Navy info panel */}
+        <div className="bg-primary px-8 lg:px-14 py-16 lg:py-24 flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-heading text-5xl lg:text-7xl text-foreground mb-6">
-              Get Your Free Estimate
-            </h1>
-            <p className="font-paragraph text-lg lg:text-xl text-secondary max-w-3xl mx-auto">
-              Fill out the form below or give us a call. We'll respond promptly with a straightforward estimate for your painting project.
+            <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-4">
+              Contact
             </p>
-          </motion.div>
-        </div>
-      </section>
+            <h1 className="font-heading text-5xl lg:text-6xl text-white leading-none mb-6">
+              Let's talk about your project.
+            </h1>
+            <p className="font-paragraph text-base text-white/70 mb-12 leading-relaxed">
+              Fill out the form, or give Will a call. You'll get a clear, no-pressure estimate and straightforward answers about your painting project.
+            </p>
 
-      {/* Contact Section */}
-      <section className="w-full py-16 lg:py-20">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-20">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="bg-white p-8 lg:p-12 rounded-lg"
-            >
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-20 h-20 mx-auto mb-6 bg-primary rounded-full flex items-center justify-center">
-                    <CheckCircle className="w-10 h-10 text-primary-foreground" />
-                  </div>
-                  <h2 className="font-heading text-3xl text-foreground mb-4">
-                    Thank You!
-                  </h2>
-                  <p className="font-paragraph text-lg text-secondary">
-                    We've received your estimate request and will contact you shortly.
+            {/* Contact details */}
+            <div className="flex flex-col gap-7">
+              <a href="tel:6012600061" className="flex items-center gap-4 group">
+                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-accent-gold transition-colors">
+                  <Phone className="w-5 h-5 text-white group-hover:text-foreground transition-colors" />
+                </div>
+                <div>
+                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Phone</p>
+                  <p className="font-paragraph text-base text-white font-semibold">(601) 260-0061</p>
+                </div>
+              </a>
+
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Address</p>
+                  <p className="font-paragraph text-base text-white">
+                    116 Stockton Dr<br />Flowood, MS 39232
                   </p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Response Time</p>
+                  <p className="font-paragraph text-base text-white">Within 24 hours</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Expectations */}
+            <div className="mt-12 border-t border-white/10 pt-10">
+              <p className="font-paragraph text-xs uppercase tracking-widest text-accent-gold font-semibold mb-5">What to expect</p>
+              <div className="flex flex-col gap-3">
+                {[
+                  'Fast response within 24 hours',
+                  'Clear, detailed estimate',
+                  'No obligation or pressure',
+                  'Professional consultation',
+                ].map((item) => (
+                  <div key={item} className="flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-accent-gold flex-shrink-0" />
+                    <span className="font-paragraph text-sm text-white/70">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Right: White form panel */}
+        <div className="bg-background px-8 lg:px-14 py-16 lg:py-24 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="max-w-xl w-full mx-auto"
+          >
+            {isSubmitted ? (
+              <div className="text-center py-16">
+                <div className="w-16 h-16 mx-auto mb-6 bg-accent-gold rounded-full flex items-center justify-center">
+                  <CheckCircle2 className="w-8 h-8 text-foreground" />
+                </div>
+                <h2 className="font-heading text-4xl text-foreground mb-4">Thank You!</h2>
+                <p className="font-paragraph text-base text-secondary">
+                  We've received your request and will be in touch shortly.
+                </p>
+              </div>
+            ) : (
+              <>
+                <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-8">Request a Free Estimate</h2>
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <Label htmlFor="name" className="font-paragraph text-base text-foreground mb-2 block">
-                      Name *
+                    <Label htmlFor="name" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
+                      Full Name *
                     </Label>
-                    <Input
-                      id="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => handleChange('name', e.target.value)}
-                      className="w-full"
-                    />
+                    <Input id="name" type="text" required value={formData.name}
+                      onChange={(e) => handleChange('name', e.target.value)} className="w-full" />
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="phone" className="font-paragraph text-base text-foreground mb-2 block">
+                      <Label htmlFor="phone" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                         Phone *
                       </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => handleChange('phone', e.target.value)}
-                        className="w-full"
-                      />
+                      <Input id="phone" type="tel" required value={formData.phone}
+                        onChange={(e) => handleChange('phone', e.target.value)} className="w-full" />
                     </div>
-
                     <div>
-                      <Label htmlFor="email" className="font-paragraph text-base text-foreground mb-2 block">
+                      <Label htmlFor="email" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                         Email *
                       </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => handleChange('email', e.target.value)}
-                        className="w-full"
-                      />
+                      <Input id="email" type="email" required value={formData.email}
+                        onChange={(e) => handleChange('email', e.target.value)} className="w-full" />
                     </div>
                   </div>
 
                   <div>
-                    <Label htmlFor="address" className="font-paragraph text-base text-foreground mb-2 block">
+                    <Label htmlFor="address" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Property Address *
                     </Label>
-                    <Input
-                      id="address"
-                      type="text"
-                      required
-                      value={formData.address}
-                      onChange={(e) => handleChange('address', e.target.value)}
-                      className="w-full"
-                    />
+                    <Input id="address" type="text" required value={formData.address}
+                      onChange={(e) => handleChange('address', e.target.value)} className="w-full" />
                   </div>
 
                   <div>
-                    <Label htmlFor="serviceNeeded" className="font-paragraph text-base text-foreground mb-2 block">
+                    <Label htmlFor="serviceNeeded" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Service Needed *
                     </Label>
-                    <Select
-                      value={formData.serviceNeeded}
-                      onValueChange={(value) => handleChange('serviceNeeded', value)}
-                      required
-                    >
+                    <Select value={formData.serviceNeeded} onValueChange={(v) => handleChange('serviceNeeded', v)} required>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
@@ -198,35 +210,28 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <Label htmlFor="projectDetails" className="font-paragraph text-base text-foreground mb-2 block">
+                    <Label htmlFor="projectDetails" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Project Details *
                     </Label>
-                    <Textarea
-                      id="projectDetails"
-                      required
-                      value={formData.projectDetails}
+                    <Textarea id="projectDetails" required value={formData.projectDetails}
                       onChange={(e) => handleChange('projectDetails', e.target.value)}
-                      className="w-full min-h-[120px]"
-                      placeholder="Please describe your project (rooms, square footage, colors, etc.)"
-                    />
+                      className="w-full min-h-[110px]"
+                      placeholder="Rooms, square footage, colors, conditions — anything that helps." />
                   </div>
 
                   <div>
-                    <Label htmlFor="preferredTimeline" className="font-paragraph text-base text-foreground mb-2 block">
+                    <Label htmlFor="preferredTimeline" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Preferred Timeline
                     </Label>
-                    <Select
-                      value={formData.preferredTimeline}
-                      onValueChange={(value) => handleChange('preferredTimeline', value)}
-                    >
+                    <Select value={formData.preferredTimeline} onValueChange={(v) => handleChange('preferredTimeline', v)}>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a timeline" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="As soon as possible">As soon as possible</SelectItem>
-                        <SelectItem value="1-2 weeks">1-2 weeks</SelectItem>
+                        <SelectItem value="1-2 weeks">1–2 weeks</SelectItem>
                         <SelectItem value="Within 1 month">Within 1 month</SelectItem>
-                        <SelectItem value="2-3 months">2-3 months</SelectItem>
+                        <SelectItem value="2-3 months">2–3 months</SelectItem>
                         <SelectItem value="Flexible">Flexible</SelectItem>
                       </SelectContent>
                     </Select>
@@ -235,100 +240,16 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-primary text-primary-foreground font-paragraph font-semibold px-8 py-6 text-lg rounded transition-colors hover:opacity-90"
+                    className="w-full bg-accent-gold text-foreground font-paragraph font-semibold py-6 text-base rounded hover:bg-accent-gold/90 transition-colors"
                   >
-                    {isSubmitting ? 'Submitting...' : 'Request Free Estimate'}
+                    {isSubmitting ? 'Sending…' : 'Request Free Estimate'}
                   </Button>
                 </form>
-              )}
-            </motion.div>
-
-            {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-6">
-                  Contact Information
-                </h2>
-                <p className="font-paragraph text-base lg:text-lg text-secondary mb-8 leading-relaxed">
-                  Prefer to call or email? We're here to help answer any questions you have about your painting project.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="font-paragraph text-lg font-semibold text-foreground mb-2">
-                      Phone
-                    </h3>
-                    <a
-                      href="tel:6012600061"
-                      className="font-paragraph text-base text-secondary hover:text-primary transition-colors"
-                    >
-                      (601) 260-0061
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <div>
-                    <h3 className="font-paragraph text-lg font-semibold text-foreground mb-2">
-                      Address
-                    </h3>
-                    <p className="font-paragraph text-base text-secondary">
-                      116 Stockton Dr<br />
-                      Flowood, MS 39232
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-8 rounded-lg mt-8">
-                <h3 className="font-heading text-2xl text-foreground mb-4">
-                  Service Area
-                </h3>
-                <p className="font-paragraph text-base text-secondary leading-relaxed">
-                  We proudly serve Flowood, Brandon, Jackson, Pearl, Madison, and nearby areas. Not sure if we cover your location? Give us a call and we'll let you know.
-                </p>
-              </div>
-
-              <div className="bg-primary p-8 rounded-lg">
-                <h3 className="font-heading text-2xl text-primary-foreground mb-4">
-                  What to Expect
-                </h3>
-                <ul className="space-y-3">
-                  <li className="flex gap-3 font-paragraph text-base text-primary-foreground">
-                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
-                    <span>Quick response within 24 hours</span>
-                  </li>
-                  <li className="flex gap-3 font-paragraph text-base text-primary-foreground">
-                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
-                    <span>Detailed, transparent estimate</span>
-                  </li>
-                  <li className="flex gap-3 font-paragraph text-base text-primary-foreground">
-                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
-                    <span>No obligation or pressure</span>
-                  </li>
-                  <li className="flex gap-3 font-paragraph text-base text-primary-foreground">
-                    <CheckCircle className="w-6 h-6 flex-shrink-0 mt-0.5" />
-                    <span>Professional consultation</span>
-                  </li>
-                </ul>
-              </div>
-            </motion.div>
-          </div>
+              </>
+            )}
+          </motion.div>
         </div>
-      </section>
+      </div>
 
       <Footer />
     </div>

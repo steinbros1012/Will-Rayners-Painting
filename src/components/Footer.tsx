@@ -3,97 +3,88 @@ import { Phone, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white border-t border-gray-200">
-      <div className="max-w-[100rem] mx-auto px-6 lg:px-20 py-12 lg:py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Company Info */}
+    <footer className="w-full bg-primary text-white">
+      {/* Top bar */}
+      <div className="border-b border-white/10">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16 py-10 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
           <div>
-            <h3 className="font-heading text-2xl text-foreground mb-4">
-              Will Rayners Custom Painting
-            </h3>
-            <p className="font-paragraph text-base text-secondary mb-4">
-              Interior, exterior, cabinet, and detail painting for homeowners across Flowood and the Jackson metro.
+            <p className="font-paragraph text-[0.6rem] uppercase tracking-[0.35em] text-accent-gold font-semibold mb-1">
+              Custom Painting
             </p>
+            <h2 className="font-heading text-4xl lg:text-5xl text-white leading-none">
+              Will Rayners
+            </h2>
           </div>
+          <Link
+            to="/contact"
+            className="inline-block bg-accent-gold text-foreground font-paragraph font-semibold px-7 py-3 rounded hover:bg-accent-gold/90 transition-colors"
+          >
+            Get Free Estimate
+          </Link>
+        </div>
+      </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="font-heading text-xl text-foreground mb-4">
-              Contact
-            </h4>
-            <div className="space-y-3">
-              <a
-                href="tel:6012600061"
-                className="flex items-center gap-2 font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                <Phone className="w-5 h-5" />
-                <span>(601) 260-0061</span>
-              </a>
-              <div className="flex items-start gap-2 font-paragraph text-base text-secondary">
-                <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
-                <span>116 Stockton Dr<br />Flowood, MS 39232</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-heading text-xl text-foreground mb-4">
-              Quick Links
-            </h4>
-            <nav className="space-y-2">
-              <Link
-                to="/services"
-                className="block font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                to="/gallery"
-                className="block font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                Gallery
-              </Link>
-              <Link
-                to="/reviews"
-                className="block font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                Reviews
-              </Link>
-              <Link
-                to="/about"
-                className="block font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/contact"
-                className="block font-paragraph text-base text-secondary hover:text-primary transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-
-          {/* Service Area */}
-          <div>
-            <h4 className="font-heading text-xl text-foreground mb-4">
-              Service Area
-            </h4>
-            <p className="font-paragraph text-base text-secondary mb-4">
-              Proudly serving Flowood, Brandon, Jackson, Pearl, Madison, and nearby communities.
-            </p>
-            <Link
-              to="/contact"
-              className="inline-block bg-primary text-primary-foreground font-paragraph font-semibold px-6 py-3 rounded transition-colors hover:opacity-90"
-            >
-              Get Free Estimate
-            </Link>
-          </div>
+      {/* Main grid */}
+      <div className="max-w-[100rem] mx-auto px-6 lg:px-16 py-12 grid md:grid-cols-3 gap-10">
+        {/* About */}
+        <div>
+          <p className="font-paragraph text-sm text-white/60 leading-relaxed">
+            Interior, exterior, cabinet, and detail painting for homeowners across Flowood and the Jackson metro. Careful prep, clean finishes, and honest work from start to finish.
+          </p>
         </div>
 
-        <div className="border-t border-gray-200 mt-12 pt-8">
-          <p className="font-paragraph text-sm text-secondary text-center">
+        {/* Quick Links */}
+        <div>
+          <h4 className="font-paragraph text-xs uppercase tracking-widest text-accent-gold font-semibold mb-5">
+            Pages
+          </h4>
+          <nav className="flex flex-col gap-2">
+            {[
+              { to: '/services', label: 'Services' },
+              { to: '/gallery', label: 'Gallery' },
+              { to: '/reviews', label: 'Reviews' },
+              { to: '/about', label: 'About' },
+              { to: '/contact', label: 'Contact' },
+            ].map(({ to, label }) => (
+              <Link
+                key={to}
+                to={to}
+                className="font-paragraph text-sm text-white/60 hover:text-white transition-colors"
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h4 className="font-paragraph text-xs uppercase tracking-widest text-accent-gold font-semibold mb-5">
+            Contact
+          </h4>
+          <div className="flex flex-col gap-4">
+            <a
+              href="tel:6012600061"
+              className="flex items-center gap-3 font-paragraph text-sm text-white/60 hover:text-white transition-colors"
+            >
+              <Phone className="w-4 h-4 flex-shrink-0" />
+              (601) 260-0061
+            </a>
+            <div className="flex items-start gap-3 font-paragraph text-sm text-white/60">
+              <MapPin className="w-4 h-4 flex-shrink-0 mt-0.5" />
+              <span>116 Stockton Dr<br />Flowood, MS 39232</span>
+            </div>
+            <p className="font-paragraph text-sm text-white/60">
+              Serving Flowood, Brandon, Jackson, Pearl, Madison & surrounding communities.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div className="border-t border-white/10">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16 py-5">
+          <p className="font-paragraph text-xs text-white/40">
             © {new Date().getFullYear()} Will Rayners Custom Painting. All rights reserved.
           </p>
         </div>

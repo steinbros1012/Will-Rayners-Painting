@@ -1,133 +1,145 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { ArrowRight, Phone } from 'lucide-react';
+import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { useEffect, useState } from 'react';
 import { PaintingServices } from '@/entities';
 import { paintingServices } from '@/data/site-content';
 
 export default function ServicesPage() {
   const [services, setServices] = useState<PaintingServices[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    loadServices();
+    setServices(paintingServices);
   }, []);
-
-  const loadServices = () => {
-    setIsLoading(true);
-    try {
-      setServices(paintingServices);
-    } catch (error) {
-      console.error('Error loading services:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
-      {/* Hero Section */}
-      <section className="w-full max-w-[120rem] mx-auto px-6 lg:px-20 pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="max-w-[100rem] mx-auto text-center">
+
+      {/* ─── PAGE HEADER ─── */}
+      <section className="bg-primary pt-32 pb-20 lg:pt-40 lg:pb-24">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="font-heading text-5xl lg:text-7xl text-foreground mb-6">
-              Professional Painting Services
-            </h1>
-            <p className="font-paragraph text-lg lg:text-xl text-secondary max-w-3xl mx-auto mb-8">
-              Interior, exterior, cabinet, trim, and prep services tailored for homeowners who want clean workmanship and clear communication from start to finish.
+            <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-4">
+              What We Offer
             </p>
-            <Link
-              to="/contact"
-              className="inline-block bg-primary text-primary-foreground font-paragraph font-semibold px-8 py-4 rounded transition-colors hover:opacity-90"
-            >
-              Get Free Estimate
-            </Link>
+            <h1 className="font-heading text-6xl lg:text-8xl text-white leading-none mb-6">
+              Our Services
+            </h1>
+            <p className="font-paragraph text-base lg:text-lg text-white/70 max-w-2xl">
+              Interior, exterior, cabinets, trim, and prep — every service is built around careful workmanship and a finish that lasts.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Services List */}
-      <section className="w-full py-16 lg:py-20">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-20">
-          <div className={`grid md:grid-cols-2 gap-12 lg:gap-16 ${isLoading ? 'min-h-[600px]' : ''}`}>
-            {isLoading ? null : services.length > 0 ? (
-              services.map((service, index) => (
-                <motion.div
-                  key={service._id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-lg overflow-hidden"
-                >
+      {/* ─── SERVICES LIST — Numbered rows ─── */}
+      <section className="py-12 lg:py-20 bg-background">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
+          {services.map((service, index) => (
+            <motion.div
+              key={service._id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.05 * index }}
+              className="group border-t border-gray-100 py-10 lg:py-14"
+            >
+              <div className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-center ${index % 2 !== 0 ? '' : ''}`}>
+                {/* Number */}
+                <div className="lg:col-span-1 hidden lg:block">
+                  <span className="font-heading text-6xl text-accent-gold italic leading-none">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                </div>
 
-                  <div className="p-8">
-                    <h2 className="font-heading text-3xl text-foreground mb-4">
-                      {service.serviceName}
-                    </h2>
-                    {service.shortSummary && (
-                      <p className="font-paragraph text-lg text-secondary mb-4 font-semibold">
-                        {service.shortSummary}
-                      </p>
-                    )}
-                    {service.description && (
-                      <p className="font-paragraph text-base text-secondary mb-4 leading-relaxed">
-                        {service.description}
-                      </p>
-                    )}
-
+                {/* Content */}
+                <div className="lg:col-span-6">
+                  <div className="flex items-center gap-3 mb-1 lg:hidden">
+                    <span className="font-heading text-3xl text-accent-gold italic">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
                   </div>
-                </motion.div>
-              ))
-            ) : (
-              <div className="col-span-full text-center py-12">
-                <p className="font-paragraph text-lg text-secondary">
-                  No services available at this time.
-                </p>
+                  <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-3 group-hover:text-primary transition-colors">
+                    {service.serviceName}
+                  </h2>
+                  {service.shortSummary && (
+                    <p className="font-paragraph text-base font-semibold text-accent-gold mb-3">
+                      {service.shortSummary}
+                    </p>
+                  )}
+                  {service.description && (
+                    <p className="font-paragraph text-base text-secondary leading-relaxed max-w-xl">
+                      {service.description}
+                    </p>
+                  )}
+                  {service.serviceAreaContext && (
+                    <p className="font-paragraph text-sm text-secondary/60 mt-4">
+                      Serving: {service.serviceAreaContext}
+                    </p>
+                  )}
+                </div>
+
+                {/* Image */}
+                <div className="lg:col-span-5">
+                  {service.serviceImage ? (
+                    <div className="aspect-[16/9] overflow-hidden rounded">
+                      <Image
+                        src={service.serviceImage}
+                        alt={service.serviceName}
+                        width={600}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ) : (
+                    <div className="aspect-[16/9] bg-muted rounded flex items-center justify-center">
+                      <span className="font-heading text-5xl text-accent-gold italic">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="w-full py-20 lg:py-32 bg-primary">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <h2 className="font-heading text-4xl lg:text-6xl text-primary-foreground mb-6">
-              Ready to Get Started?
-            </h2>
-            <p className="font-paragraph text-lg lg:text-xl text-primary-foreground mb-8 max-w-3xl mx-auto">
-              Contact Will today for a free estimate and straightforward guidance on your painting project.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      {/* ─── CTA ─── */}
+      <section className="py-20 lg:py-28 bg-foreground">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="font-heading text-5xl lg:text-6xl text-white mb-4">
+                Not sure which service you need?
+              </h2>
+              <p className="font-paragraph text-base text-white/70">
+                Call Will directly or fill out the estimate form — he'll talk through the project and recommend the right approach.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row lg:justify-end gap-4">
               <Link
                 to="/contact"
-                className="inline-block bg-white text-primary font-paragraph font-semibold px-8 py-4 rounded transition-colors hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded hover:bg-accent-gold/90 transition-colors"
               >
-                Get Free Estimate
+                Get Free Estimate <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:6012600061"
-                className="inline-block bg-transparent text-primary-foreground border-2 border-primary-foreground font-paragraph font-semibold px-8 py-4 rounded transition-colors hover:bg-primary-foreground hover:text-primary"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white font-paragraph font-semibold px-8 py-4 rounded hover:border-white transition-colors"
               >
-                Call (601) 260-0061
+                <Phone className="w-4 h-4" />
+                (601) 260-0061
               </a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

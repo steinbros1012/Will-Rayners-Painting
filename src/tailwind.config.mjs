@@ -23,15 +23,23 @@ export default {
                 paragraph: "sora"
             },
             colors: {
-                'accent-gold': '#D8A35D',
+                // Deep navy blue — the brand primary
+                primary: '#1C3557',
+                'primary-foreground': '#FFFFFF',
+                // Bright amber / warm yellow — the action accent
+                'accent-gold': '#F0B429',
+                // Page background — clean white
+                background: '#FFFFFF',
+                // Near-black text
+                foreground: '#0F1923',
+                // Muted slate gray
+                secondary: '#64748B',
+                'secondary-foreground': '#FFFFFF',
+                // Light section background
+                muted: '#F5F7FA',
+                'muted-foreground': '#64748B',
                 destructive: '#dc3545',
                 'destructive-foreground': '#ffffff',
-                background: '#F6F1E8',
-                secondary: '#5C6470',
-                foreground: '#16202A',
-                'secondary-foreground': '#FFFFFF',
-                'primary-foreground': '#FFFFFF',
-                primary: '#B66A3C'
             },
         },
     },
