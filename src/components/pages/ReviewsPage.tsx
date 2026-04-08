@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { CheckCircle2, Quote, Star } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useEffect, useState } from 'react';
@@ -26,6 +26,9 @@ export default function ReviewsPage() {
       setIsLoading(false);
     }
   };
+
+  const featuredReview = reviews[0];
+  const secondaryReviews = reviews.slice(1);
 
   return (
     <div className="min-h-screen bg-background">
@@ -61,12 +64,92 @@ export default function ReviewsPage() {
         </div>
       </section>
 
+      <section className="w-full pb-8 lg:pb-12">
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-20">
+          {isLoading ? null : featuredReview ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="overflow-hidden rounded-[2rem] bg-[#0f1720] text-white shadow-[0_30px_90px_rgba(15,23,32,0.18)]"
+            >
+              <div className="grid gap-0 lg:grid-cols-[1.25fr_0.95fr]">
+                <div className="p-8 md:p-10 lg:p-14">
+                  <div className="mb-5 flex items-center gap-3 text-[#f0c27b]">
+                    <Quote className="h-8 w-8" />
+                    <span className="font-paragraph text-sm font-semibold uppercase tracking-[0.3em]">
+                      Featured Review
+                    </span>
+                  </div>
+                  <div className="mb-6 flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-6 w-6 fill-[#f0c27b] text-[#f0c27b]" />
+                    ))}
+                  </div>
+                  <h2 className="mb-4 font-heading text-4xl leading-tight text-white lg:text-6xl">
+                    {featuredReview.customerName}
+                  </h2>
+                  <p className="mb-8 max-w-3xl font-paragraph text-lg leading-8 text-white/84">
+                    "{featuredReview.reviewText}"
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#f0c27b]" />
+                      <span className="font-paragraph text-sm text-white/84">
+                        Quick turnaround from the first call to the on-site walkthrough and estimate.
+                      </span>
+                    </div>
+                    <div className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#f0c27b]" />
+                      <span className="font-paragraph text-sm text-white/84">
+                        The project included painting plus carpentry work and a replacement fiberglass door.
+                      </span>
+                    </div>
+                    <div className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#f0c27b]" />
+                      <span className="font-paragraph text-sm text-white/84">
+                        Strong communication on pricing, schedule, colors, and scope before work began.
+                      </span>
+                    </div>
+                    <div className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#f0c27b]" />
+                      <span className="font-paragraph text-sm text-white/84">
+                        Finished result earned an emphatic five-star recommendation from the homeowner.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="border-t border-white/10 bg-[linear-gradient(180deg,#d8a35d_0%,#b66a3c_100%)] p-8 md:p-10 lg:border-l lg:border-t-0 lg:p-14">
+                  <p className="mb-4 font-paragraph text-sm font-semibold uppercase tracking-[0.28em] text-[#16202a]">
+                    Project Story
+                  </p>
+                  <h3 className="mb-6 font-heading text-3xl leading-tight text-[#16202a] lg:text-5xl">
+                    A whole-home exterior refresh with trim, doors, and carpentry details.
+                  </h3>
+                  <div className="space-y-4 font-paragraph text-base leading-7 text-[#16202a]/85">
+                    <p>
+                      Nick&apos;s review paints a full picture of the experience: fast response, a clear estimate, help coordinating colors, and a crew that delivered professionally.
+                    </p>
+                    <p>
+                      This is exactly the kind of story homeowners want to see when they are deciding whether to trust someone with a large exterior job.
+                    </p>
+                    <p>
+                      The attached photo set can drop into this featured section as soon as the image files are added to the project directory.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ) : null}
+        </div>
+      </section>
+
       {/* Reviews Grid */}
       <section className="w-full py-16 lg:py-20">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-20">
           <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 ${isLoading ? 'min-h-[600px]' : ''}`}>
             {isLoading ? null : reviews.length > 0 ? (
-              reviews.map((review, index) => (
+              secondaryReviews.map((review, index) => (
                 <motion.div
                   key={review._id}
                   initial={{ opacity: 0, y: 20 }}

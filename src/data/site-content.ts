@@ -141,6 +141,14 @@ export const projectGallery: ProjectGallery[] = [
 
 export const customerReviews: CustomerReviews[] = [
   {
+    _id: "wr-review-nick",
+    customerName: "Nick Cappony",
+    reviewText:
+      "I was recommended to Will Rayner Custom Painting & Carpentry by a good friend of mine and I am so glad he did. Will came out the very next day, walked the house with me, sent over the estimate quickly, and kept the process moving. His painters and carpenters were excellent, very professional, and did an awesome job. I highly recommend them if you need your house painted and some carpentry work done.",
+    rating: 5,
+    reviewSource: "Facebook Review",
+  },
+  {
     _id: "wr-review-michael",
     customerName: "Michael Easterling",
     reviewText:
