@@ -218,8 +218,9 @@ export default function GalleryPage() {
                 transition={{ duration: 0.5 }}
               >
                 {(() => {
-                  const leftLabel = 'Before';
-                  const rightLabel = 'After';
+                  const isProjectViews = project._id === 'wr-project-brick-wall-retaining';
+                  const leftLabel = isProjectViews ? 'View 1' : 'Before';
+                  const rightLabel = isProjectViews ? 'View 2' : 'After';
                   const leftAlt = `${project.projectTitle} — ${leftLabel}`;
                   const rightAlt = `${project.projectTitle} — ${rightLabel}`;
 

@@ -9,7 +9,7 @@ export const siteImages = {
   logo: "/images/meadowlark/branding/logo.jpg",
   hero: "/images/meadowlark/home/hero.png",
   aboutOwner: "/images/meadowlark/about/owner-portrait.jpg",
-  aboutWork: "/images/meadowlark/about/work-example.png",
+  aboutWork: "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
   galleryFallback: "/images/meadowlark/gallery/fallback.png",
 } as const;
 
@@ -72,7 +72,7 @@ export const paintingServices: PaintingServices[] = [
       "Decks, fences, and wood accents need the right products and prep to stand up to the weather. Staining and sealing help preserve the wood while improving the look of the entire property.",
     serviceImage: "/images/meadowlark/services/deck-fence-staining.png",
     serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
-    isFeatured: false,
+    isFeatured: true,
   },
 ];
 
@@ -133,11 +133,11 @@ export const projectGallery: ProjectGallery[] = [
   },
   {
     _id: "wr-project-brick-wall-retaining",
-    projectTitle: "Brick Wall & Retaining Wall Refresh",
+    projectTitle: "Wood Retaining Wall Refresh",
     beforePhoto: "/images/will-rayners/jobs/brick-wall-retaining-wall/01-before.png",
     afterPhoto: "/images/will-rayners/jobs/brick-wall-retaining-wall/02-after.png",
     projectDescription:
-      "This before-and-after project cleaned up a rough exterior side yard, refreshed the brick finish, and gave the retaining wall area a much cleaner, more finished look.",
+      "Two finished angles from the same project show the cleanup and fresh look of this wood retaining wall area along the side of the home.",
     projectLocation: "Mississippi",
   },
   {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Star, Phone, ArrowRight, CheckCircle2, MapPin, Award, Clock } from 'lucide-react';
+import { Star, Phone, ArrowRight, CheckCircle2, MapPin, Award } from 'lucide-react';
 import { Image } from '@/components/ui/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -24,6 +24,11 @@ export default function HomePage() {
     setGalleryProjects(projectGallery.slice(0, 3));
     setFeaturedReview(customerReviews[0] || null);
   }, []);
+
+  const projectViewLabels: Record<string, { left: string; right: string }> = {
+    'wr-project-nick-cappony': { left: 'View 1', right: 'View 2' },
+    'wr-project-brick-wall-retaining': { left: 'View 1', right: 'View 2' },
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -167,13 +172,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── GALLERY — Before/After Grid ─── */}
+      {/* ─── GALLERY — Project Highlights ─── */}
       <section className="py-24 lg:py-32 bg-muted">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
             <div>
               <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-3">Our Work</p>
-              <h2 className="font-heading text-5xl lg:text-6xl text-foreground">Before &amp; After</h2>
+              <h2 className="font-heading text-5xl lg:text-6xl text-foreground">Project Highlights</h2>
             </div>
             <Link
               to="/gallery"
@@ -193,33 +198,41 @@ export default function HomePage() {
                 transition={{ delay: index * 0.1 }}
                 className="grid grid-cols-2 gap-2"
               >
+                {(() => {
+                  const labels = projectViewLabels[project._id] ?? {
+                    left: 'Before',
+                    right: 'After',
+                  };
+
+                  return (
+                    <>
                 {/* Before */}
                 <div className="relative overflow-hidden">
                   <div className="aspect-[4/3]">
                     <Image
                       src={project.beforePhoto || siteImages.galleryFallback}
-                      alt={`${project.projectTitle} — Before`}
+                      alt={`${project.projectTitle} — ${labels.left}`}
                       width={700}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <span className="absolute top-3 left-3 font-paragraph text-xs font-semibold uppercase tracking-widest bg-foreground/80 text-white px-3 py-1.5">
-                    Before
+                    {labels.left}
                   </span>
                 </div>
 
-                {/* After */}
+                {/* Second image */}
                 <div className="relative overflow-hidden">
                   <div className="aspect-[4/3]">
                     <Image
                       src={project.afterPhoto || siteImages.galleryFallback}
-                      alt={`${project.projectTitle} — After`}
+                      alt={`${project.projectTitle} — ${labels.right}`}
                       width={700}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <span className="absolute top-3 right-3 font-paragraph text-xs font-semibold uppercase tracking-widest bg-accent-gold text-foreground px-3 py-1.5">
-                    After
+                    {labels.right}
                   </span>
                 </div>
 
@@ -228,6 +241,9 @@ export default function HomePage() {
                   <p className="font-heading text-xl text-foreground">{project.projectTitle}</p>
                   <p className="font-paragraph text-sm text-secondary">{project.projectLocation}</p>
                 </div>
+                    </>
+                  );
+                })()}
               </motion.div>
             ))}
           </div>
