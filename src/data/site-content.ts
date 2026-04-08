@@ -106,6 +106,33 @@ export const projectGallery: ProjectGallery[] = [
     dateCompleted: "2026-04-08",
   },
   {
+    _id: "wr-project-brick-wall-retaining",
+    projectTitle: "Brick Wall & Retaining Wall Refresh",
+    beforePhoto: "/images/will-rayners/jobs/brick-wall-retaining-wall/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/brick-wall-retaining-wall/02-after.png",
+    projectDescription:
+      "This before-and-after project cleaned up a rough exterior side yard, refreshed the brick finish, and gave the retaining wall area a much cleaner, more finished look.",
+    projectLocation: "Mississippi",
+  },
+  {
+    _id: "wr-project-french-door",
+    projectTitle: "French Door Restoration",
+    beforePhoto: "/images/will-rayners/jobs/french-door-restoration/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/french-door-restoration/02-after.png",
+    projectDescription:
+      "A worn exterior door unit was restored with a cleaner, brighter finish that sharpened the trim and made the entire entry look cared for again.",
+    projectLocation: "Mississippi",
+  },
+  {
+    _id: "wr-project-exterior-white",
+    projectTitle: "Full Exterior White Brick Transformation",
+    beforePhoto: "/images/will-rayners/jobs/full-exterior-white-finish/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/full-exterior-white-finish/02-after.png",
+    projectDescription:
+      "This home went from dark, dated brick to a bright white exterior with dark accents, dramatically changing the curb appeal and modernizing the whole property.",
+    projectLocation: "Mississippi",
+  },
+  {
     _id: "wr-project-living-room",
     projectTitle: "Full Interior Color Refresh",
     beforePhoto: "/images/meadowlark/projects/312acb2a-before.avif",

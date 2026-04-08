@@ -101,6 +101,19 @@ export default function GalleryPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
+                {/*
+                  Nick's project is a multi-photo case study, not a before/after pair.
+                  The rest of the portfolio items here are true before/after transformations.
+                */}
+                {(() => {
+                  const isBeforeAfter = project._id !== 'wr-project-nick-cappony';
+                  const leftLabel = isBeforeAfter ? 'Before' : 'View 1';
+                  const rightLabel = isBeforeAfter ? 'After' : 'View 2';
+                  const leftAlt = `${project.projectTitle} — ${leftLabel}`;
+                  const rightAlt = `${project.projectTitle} — ${rightLabel}`;
+
+                  return (
+                    <>
                 <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
                   <div className="flex items-center gap-4">
                     <span className="font-heading text-4xl italic text-accent-gold">
@@ -126,26 +139,26 @@ export default function GalleryPage() {
                     <div className="aspect-[4/3]">
                       <Image
                         src={project.beforePhoto || siteImages.galleryFallback}
-                        alt={`${project.projectTitle} — View 1`}
+                        alt={leftAlt}
                         width={800}
                         className="h-full w-full object-cover"
                       />
                     </div>
                     <span className="absolute left-3 top-3 bg-foreground/80 px-3 py-1.5 font-paragraph text-xs font-semibold uppercase tracking-widest text-white">
-                      View 1
+                      {leftLabel}
                     </span>
                   </div>
                   <div className="relative overflow-hidden">
                     <div className="aspect-[4/3]">
                       <Image
                         src={project.afterPhoto || siteImages.galleryFallback}
-                        alt={`${project.projectTitle} — View 2`}
+                        alt={rightAlt}
                         width={800}
                         className="h-full w-full object-cover"
                       />
                     </div>
                     <span className="absolute right-3 top-3 bg-accent-gold px-3 py-1.5 font-paragraph text-xs font-semibold uppercase tracking-widest text-foreground">
-                      View 2
+                      {rightLabel}
                     </span>
                   </div>
                 </div>
@@ -155,6 +168,9 @@ export default function GalleryPage() {
                     {project.projectDescription}
                   </p>
                 )}
+                    </>
+                  );
+                })()}
               </motion.div>
             ))}
           </div>
