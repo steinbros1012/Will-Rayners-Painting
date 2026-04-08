@@ -31,10 +31,10 @@ export default function GalleryPage() {
               Our Work
             </p>
             <h1 className="mb-6 font-heading text-6xl leading-none text-white lg:text-8xl">
-              Before &amp; After
+              Project Gallery
             </h1>
             <p className="max-w-2xl font-paragraph text-base text-white/70 lg:text-lg">
-              Real projects, real results. Every transformation starts with thorough prep and ends with a finish built to last.
+              Real projects, real results. Browse recent work, detail shots, and finished exteriors from Will Rayners Custom Painting.
             </p>
           </motion.div>
         </div>
@@ -126,26 +126,26 @@ export default function GalleryPage() {
                     <div className="aspect-[4/3]">
                       <Image
                         src={project.beforePhoto || siteImages.galleryFallback}
-                        alt={`${project.projectTitle} — Before`}
+                        alt={`${project.projectTitle} — View 1`}
                         width={800}
                         className="h-full w-full object-cover"
                       />
                     </div>
                     <span className="absolute left-3 top-3 bg-foreground/80 px-3 py-1.5 font-paragraph text-xs font-semibold uppercase tracking-widest text-white">
-                      Before
+                      View 1
                     </span>
                   </div>
                   <div className="relative overflow-hidden">
                     <div className="aspect-[4/3]">
                       <Image
                         src={project.afterPhoto || siteImages.galleryFallback}
-                        alt={`${project.projectTitle} — After`}
+                        alt={`${project.projectTitle} — View 2`}
                         width={800}
                         className="h-full w-full object-cover"
                       />
                     </div>
                     <span className="absolute right-3 top-3 bg-accent-gold px-3 py-1.5 font-paragraph text-xs font-semibold uppercase tracking-widest text-foreground">
-                      After
+                      View 2
                     </span>
                   </div>
                 </div>
