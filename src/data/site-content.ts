@@ -76,7 +76,35 @@ export const paintingServices: PaintingServices[] = [
   },
 ];
 
+export const nickCapponyProject = {
+  title: "Nick Cappony Exterior Paint & Carpentry Project",
+  location: "Central Mississippi",
+  summary:
+    "A full exterior refresh featuring new paint, trim detailing, a replacement fiberglass door, and polished carpentry work across multiple elevations of the home.",
+  photos: [
+    "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
+    "/images/will-rayners/jobs/nick-cappony/02-driveway-front-view.png",
+    "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
+    "/images/will-rayners/jobs/nick-cappony/04-window-trim.png",
+    "/images/will-rayners/jobs/nick-cappony/05-garage-door.png",
+    "/images/will-rayners/jobs/nick-cappony/06-side-elevation.png",
+    "/images/will-rayners/jobs/nick-cappony/07-rear-door.png",
+    "/images/will-rayners/jobs/nick-cappony/08-rear-wall-deck.png",
+    "/images/will-rayners/jobs/nick-cappony/09-glass-door-detail.png",
+  ],
+} as const;
+
 export const projectGallery: ProjectGallery[] = [
+  {
+    _id: "wr-project-nick-cappony",
+    projectTitle: "Nick Cappony Exterior Paint & Carpentry Project",
+    beforePhoto: "/images/will-rayners/jobs/nick-cappony/02-driveway-front-view.png",
+    afterPhoto: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
+    projectDescription:
+      "This featured Will Rayners project included an exterior repaint, trim and window detail work, garage and entry updates, and carpentry improvements that brought the entire home together.",
+    projectLocation: "Central Mississippi",
+    dateCompleted: "2026-04-08",
+  },
   {
     _id: "wr-project-living-room",
     projectTitle: "Full Interior Color Refresh",
