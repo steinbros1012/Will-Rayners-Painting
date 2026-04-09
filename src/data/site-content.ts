@@ -123,6 +123,23 @@ export const ceilingWallRepairProject = {
   ],
 } as const;
 
+export const postFrameBuildingProject = {
+  title: "Post-Frame Barn / Workshop Build",
+  location: "Mississippi",
+  summary:
+    "A ground-up post-frame structure showing layout, framing, roof progress, metal skin installation, and the finished shell of the building.",
+  photos: [
+    "/images/will-rayners/jobs/post-frame-building/01-post-layout.png",
+    "/images/will-rayners/jobs/post-frame-building/02-beam-frame.png",
+    "/images/will-rayners/jobs/post-frame-building/03-roof-trusses.png",
+    "/images/will-rayners/jobs/post-frame-building/04-roof-framing.png",
+    "/images/will-rayners/jobs/post-frame-building/05-roof-skin.png",
+    "/images/will-rayners/jobs/post-frame-building/06-siding-progress.png",
+    "/images/will-rayners/jobs/post-frame-building/07-finished-side.png",
+    "/images/will-rayners/jobs/post-frame-building/08-front-opening.png",
+  ],
+} as const;
+
 export const projectGallery: ProjectGallery[] = [
   {
     _id: "wr-project-nick-cappony",

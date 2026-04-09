@@ -10,6 +10,7 @@ import { ProjectGallery } from '@/entities';
 import {
   ceilingWallRepairProject,
   nickCapponyProject,
+  postFrameBuildingProject,
   projectGallery,
   siteImages,
 } from '@/data/site-content';
@@ -192,6 +193,15 @@ export default function GalleryPage() {
               highlights={[
                 'This job moved from visible ceiling and wall damage into patched, blended, and repainted surfaces that feel clean again.',
                 'I focused the gallery on the strongest progress and finished-room shots so visitors can click through the story without the page getting too heavy.',
+              ]}
+            />
+
+            <InteractiveProjectCard
+              eyebrow="Build Progress"
+              project={postFrameBuildingProject}
+              highlights={[
+                'These photos look more like a post-frame barn or workshop build than a finished house, so the gallery presents it as a structural build sequence.',
+                'The set walks through post layout, framing, roof progress, exterior skin installation, and the finished shell from multiple angles.',
               ]}
             />
           </div>
