@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Phone, Star } from 'lucide-react';
+import { ArrowRight, Phone, Quote, Star } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Image } from '@/components/ui/image';
@@ -17,6 +17,8 @@ export default function ReviewsPage() {
 
   const featuredReview = reviews[0];
   const restReviews = reviews.slice(1);
+  const leadTestimonials = restReviews.slice(0, 2);
+  const supportingTestimonials = restReviews.slice(2);
 
   return (
     <div className="min-h-screen bg-background">
@@ -117,10 +119,10 @@ export default function ReviewsPage() {
                       <div className="aspect-[4/3]">
                         <Image
                           src={photo}
-                          alt={`Nick Cappony project photo ${index + 1}`}
-                          width={600}
-                          className="h-full w-full object-cover"
-                        />
+                        alt={`Exterior paint and carpentry project photo ${index + 1}`}
+                        width={600}
+                        className="h-full w-full object-cover"
+                      />
                       </div>
                     </div>
                   ))}
@@ -136,7 +138,7 @@ export default function ReviewsPage() {
 
       <section className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-[100rem] px-6 lg:px-16">
-          <div className="mb-8 flex items-end justify-between gap-6">
+          <div className="mb-10 flex items-end justify-between gap-6">
             <div>
               <p className="mb-3 font-paragraph text-xs font-semibold uppercase tracking-[0.28em] text-accent-gold">
                 More Reviews
@@ -144,35 +146,111 @@ export default function ReviewsPage() {
               <h2 className="font-heading text-4xl text-foreground lg:text-5xl">
                 What homeowners keep saying
               </h2>
+              <p className="mt-3 max-w-2xl font-paragraph text-base leading-relaxed text-secondary">
+                Real feedback from garage repairs, repaint projects, and whole-home updates across Mississippi.
+              </p>
             </div>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {restReviews.map((review, index) => (
+
+          <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55 }}
+              className="rounded-[2rem] border border-[#dbe4f0] bg-[linear-gradient(135deg,#f9fbfd_0%,#eef4fa_100%)] p-8 shadow-[0_22px_70px_rgba(15,23,32,0.06)] lg:p-10"
+            >
+              {leadTestimonials[0] && (
+                <>
+                  <div className="mb-5 flex items-center justify-between gap-4">
+                    <div className="flex gap-1">
+                      {[...Array(leadTestimonials[0].rating || 5)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 fill-accent-gold text-accent-gold" />
+                      ))}
+                    </div>
+                    <Quote className="h-10 w-10 text-primary/10" />
+                  </div>
+                  <blockquote className="max-w-4xl font-heading text-2xl leading-snug text-foreground lg:text-4xl">
+                    "{leadTestimonials[0].reviewText}"
+                  </blockquote>
+                  <div className="mt-8 flex items-center gap-4 border-t border-primary/10 pt-5">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-heading text-white">
+                      {leadTestimonials[0].customerName.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="font-paragraph text-base font-semibold text-foreground">
+                        {leadTestimonials[0].customerName}
+                      </p>
+                      <p className="font-paragraph text-xs font-semibold uppercase tracking-[0.22em] text-secondary">
+                        {leadTestimonials[0].reviewSource}
+                      </p>
+                    </div>
+                  </div>
+                </>
+              )}
+            </motion.div>
+
+            <div className="grid gap-6">
+              {leadTestimonials.slice(1).map((review, index) => (
+                <motion.div
+                  key={review._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.06 }}
+                  className="rounded-[1.75rem] border border-[#e1e8f0] bg-white p-6 shadow-[0_18px_50px_rgba(15,23,32,0.05)]"
+                >
+                  <div className="mb-4 flex gap-1">
+                    {[...Array(review.rating || 5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
+                    ))}
+                  </div>
+                  <p className="font-paragraph text-base leading-relaxed text-foreground">
+                    "{review.reviewText}"
+                  </p>
+                  <div className="mt-5 border-t border-gray-200 pt-4">
+                    <p className="font-paragraph text-sm font-semibold text-foreground">
+                      {review.customerName}
+                    </p>
+                    <p className="mt-1 font-paragraph text-xs uppercase tracking-[0.2em] text-secondary">
+                      {review.reviewSource}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {supportingTestimonials.map((review, index) => (
               <motion.div
                 key={review._id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="group rounded bg-muted p-7 transition-colors duration-300 hover:bg-primary"
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className="group rounded-[1.5rem] border border-gray-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-[0_18px_45px_rgba(15,23,32,0.07)]"
               >
-                <div className="mb-5 flex gap-1">
-                  {[...Array(review.rating || 5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
-                  ))}
+                <div className="mb-4 flex items-center justify-between gap-3">
+                  <div className="flex gap-1">
+                    {[...Array(review.rating || 5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
+                    ))}
+                  </div>
+                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted font-heading text-sm text-primary">
+                    {review.customerName.charAt(0)}
+                  </div>
                 </div>
-                <p className="mb-6 font-paragraph text-base leading-relaxed text-foreground transition-colors group-hover:text-white">
+                <p className="mb-5 font-paragraph text-base leading-relaxed text-foreground">
                   "{review.reviewText}"
                 </p>
-                <div className="border-t border-gray-200 pt-4 transition-colors group-hover:border-white/20">
-                  <p className="font-paragraph text-sm font-semibold text-foreground transition-colors group-hover:text-white">
+                <div className="border-t border-gray-200 pt-4">
+                  <p className="font-paragraph text-sm font-semibold text-foreground">
                     {review.customerName}
                   </p>
-                  {review.reviewSource && (
-                    <p className="mt-0.5 font-paragraph text-xs text-secondary transition-colors group-hover:text-white/60">
-                      {review.reviewSource}
-                    </p>
-                  )}
+                  <p className="mt-1 font-paragraph text-xs uppercase tracking-[0.2em] text-secondary">
+                    {review.reviewSource}
+                  </p>
                 </div>
               </motion.div>
             ))}

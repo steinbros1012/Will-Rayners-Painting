@@ -242,6 +242,14 @@ export const customerReviews: CustomerReviews[] = [
     reviewSource: "Facebook Review",
   },
   {
+    _id: "wr-review-patricia",
+    customerName: "Patricia Barber McCarty",
+    reviewText:
+      "I highly recommend Will. I have a garage that had not been painted in 30 years, and after shelving was removed it needed a lot of sheet rock repair. After Will finished the paint job, the garage looked brand new, and the work was very affordable.",
+    rating: 5,
+    reviewSource: "Facebook Recommendation",
+  },
+  {
     _id: "wr-review-michael",
     customerName: "Michael Easterling",
     reviewText:
