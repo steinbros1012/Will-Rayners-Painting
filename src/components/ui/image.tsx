@@ -10,7 +10,19 @@ type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
 };
 
 export const Image = forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, fittingType = 'fill', originWidth, originHeight, focalPointX, focalPointY, className, style, ...props }, ref) => {
+  ({
+    src,
+    fittingType = 'fill',
+    originWidth,
+    originHeight,
+    focalPointX,
+    focalPointY,
+    className,
+    style,
+    loading = 'lazy',
+    decoding = 'async',
+    ...props
+  }, ref) => {
     if (!src) {
       return <div data-empty-image className={className} />
     }
@@ -24,6 +36,8 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
       <img
         ref={ref}
         src={src}
+        loading={loading}
+        decoding={decoding}
         className={cn(fittingType === 'fit' ? 'object-contain' : 'object-cover', className)}
         style={{
           objectPosition,
