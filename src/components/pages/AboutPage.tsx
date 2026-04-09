@@ -73,7 +73,7 @@ export default function AboutPage() {
                   Will has built his reputation on doing solid work, communicating clearly, and taking the time to get the details right. Whether the project is a quick repaint or a more involved transformation, the goal stays the same: deliver results the customer feels proud of when the job is done.
                 </p>
                 <p>
-                  From the first estimate to the final coat, the process is built around clear communication and quality that shows. Whether the job calls for painting, sheet rock repair, or pressure washing, Will Rayners Custom Painting would be honored to help.
+                  From the first estimate to the final coat, the process is built around clear communication and quality that shows. Painting, sheet rock repair, and pressure washing are all handled with the same steady attention to detail.
                 </p>
               </div>
 

@@ -63,7 +63,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="font-paragraph text-base lg:text-lg text-white/70 mb-10 leading-relaxed max-w-md"
             >
-              Will Rayners Custom Painting brings careful prep, clean finishes, and five-star service to homes across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
+              Careful prep, clean finishes, and five-star service for homes across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
             </motion.p>
 
             <motion.div
@@ -297,7 +297,7 @@ export default function HomePage() {
                 {[
                   { title: 'Thorough prep & cleanup', desc: 'Surfaces are cleaned, sanded, and primed before a single coat goes on. Job site stays tidy throughout.' },
                   { title: 'Clear communication', desc: 'You know the price, the timeline, and the scope before work begins — no surprises.' },
-                  { title: 'Local & reliable', desc: 'Based in Flowood, Will serves homeowners across Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.' },
+                  { title: 'Local & reliable', desc: 'Based in Flowood and serving homeowners across the Jackson metro and nearby communities.' },
                   { title: 'Five-star reputation', desc: 'Backed by real homeowner reviews on Google and Facebook.' },
                 ].map((item, i) => (
                   <motion.div

@@ -173,7 +173,7 @@ export default function GalleryPage() {
               Interactive Case Studies
             </p>
             <h2 className="max-w-3xl font-heading text-4xl leading-tight text-foreground lg:text-6xl">
-              Click through Will&apos;s featured work without scrolling through oversized photo walls.
+              A closer look at recent work.
             </h2>
           </div>
 
@@ -182,8 +182,8 @@ export default function GalleryPage() {
               eyebrow="Featured Job"
               project={nickCapponyProject}
               highlights={[
-                "Nick's review called out fast response time, a clear estimate, strong communication, and a crew that delivered excellent work.",
-                'This exterior project shows the home from multiple finished angles, plus detail work around trim, windows, garage, and doors.',
+                'Exterior repaint with carpentry updates, fresh trim work, and detailed finishing around doors, windows, and the garage.',
+                'Multiple views show the finished home from the front, side, and entry areas.',
               ]}
             />
 
@@ -191,8 +191,8 @@ export default function GalleryPage() {
               eyebrow="Repair & Repaint"
               project={ceilingWallRepairProject}
               highlights={[
-                'This job moved from visible ceiling and wall damage into patched, blended, and repainted surfaces that feel clean again.',
-                'I focused the gallery on the strongest progress and finished-room shots so visitors can click through the story without the page getting too heavy.',
+                'Ceiling repair, wall patching, skim work, and repaint brought the room back to a clean finished look.',
+                'The gallery shows the repair process along with the final result from several angles.',
               ]}
             />
 
@@ -200,8 +200,8 @@ export default function GalleryPage() {
               eyebrow="Build Progress"
               project={postFrameBuildingProject}
               highlights={[
-                'These photos look more like a post-frame barn or workshop build than a finished house, so the gallery presents it as a structural build sequence.',
-                'The set walks through post layout, framing, roof progress, exterior skin installation, and the finished shell from multiple angles.',
+                'Post layout, framing, roof progress, and metal skin installation are shown from start to finish.',
+                'The final photos show the completed shell from both the side and front opening.',
               ]}
             />
           </div>
