@@ -43,7 +43,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Update kitchens and built-ins without the cost of replacement.",
     description:
       "Cabinet painting is ideal for homeowners who want a cleaner, brighter look while keeping the layout they already love. The process focuses on prep, sanding, priming, and smooth topcoats for a polished result.",
-    serviceImage: "/images/will-rayners/jobs/interior-stairwell-refresh/02-after.png",
+    serviceImage: "/images/will-rayners/jobs/cabinet-painting/01-finished-kitchen.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -83,7 +83,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Prep exterior surfaces the right way before paint and cleanup work begins.",
     description:
       "Pressure washing helps remove dirt, buildup, mildew, and loose surface grime before painting and can also be a standalone service for homeowners who want a cleaner exterior.",
-    serviceImage: "/images/will-rayners/jobs/brick-wall-retaining-wall/02-after.png",
+    serviceImage: "/images/will-rayners/jobs/pressure-washing-walkway/02-after.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: false,
   },
@@ -213,6 +213,15 @@ export const projectGallery: ProjectGallery[] = [
     afterPhoto: "/images/will-rayners/jobs/interior-stairwell-refresh/02-after.png",
     projectDescription:
       "The stairwell went from multiple bold colors and unfinished patches to a cleaner, brighter interior finish.",
+    projectLocation: "Mississippi",
+  },
+  {
+    _id: "wr-project-pressure-washing",
+    projectTitle: "Pressure Washing Walkway Refresh",
+    beforePhoto: "/images/will-rayners/jobs/pressure-washing-walkway/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/pressure-washing-walkway/02-after.png",
+    projectDescription:
+      "Pressure washing lifted dirt and buildup from this walkway and restored a much cleaner surface finish.",
     projectLocation: "Mississippi",
   },
 ];
