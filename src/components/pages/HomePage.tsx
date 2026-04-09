@@ -117,7 +117,7 @@ export default function HomePage() {
                 className="mb-10 max-w-2xl font-paragraph text-base leading-relaxed text-white lg:text-lg"
                 style={{ textShadow: '0 6px 20px rgba(7,18,33,0.36)' }}
               >
-                Careful prep, crisp lines, and dependable service for homeowners across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
+                Beautiful, long-lasting paintwork backed by honest communication, careful prep, and dependable service throughout the Jackson area.
               </p>
 
               <div className="flex flex-col gap-4 sm:flex-row">
@@ -148,7 +148,7 @@ export default function HomePage() {
                 'Sheet rock repair and pressure washing',
                 'Free estimates and five-star local service',
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-2xl bg-black/10 px-4 py-3">
+                <div key={item} className="flex items-start gap-3 px-2 py-2">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-gold" />
                   <p className="font-paragraph text-sm leading-relaxed text-white">{item}</p>
                 </div>
