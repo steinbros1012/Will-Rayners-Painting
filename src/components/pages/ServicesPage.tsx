@@ -34,7 +34,7 @@ export default function ServicesPage() {
               Our Services
             </h1>
             <p className="font-paragraph text-base lg:text-lg text-white/70 max-w-2xl">
-              Interior, exterior, cabinets, trim, and prep — every service is built around careful workmanship and a finish that lasts.
+              Interior, exterior, cabinets, trim, sheet rock repair, pressure washing, and prep work — every service is built around careful workmanship and a finish that lasts.
             </p>
           </motion.div>
         </div>

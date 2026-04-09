@@ -5,6 +5,9 @@ import type {
   TrustIndicators,
 } from "@/entities";
 
+const primaryServiceArea =
+  "Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Flowood, Crystal Springs, Jackson, and nearby communities";
+
 export const siteImages = {
   logo: "/images/meadowlark/branding/logo.jpg",
   hero: "/images/meadowlark/home/hero.png",
@@ -21,7 +24,7 @@ export const paintingServices: PaintingServices[] = [
     description:
       "From single-room refreshes to full-home repaints, Will Rayners Custom Painting handles walls, ceilings, trim, and doors with careful prep, sharp cut-ins, and a finish built to hold up to daily life.",
     serviceImage: "/images/meadowlark/services/interior-painting.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
   {
@@ -29,9 +32,9 @@ export const paintingServices: PaintingServices[] = [
     serviceName: "Exterior Painting",
     shortSummary: "Protect curb appeal with durable coatings and proper prep.",
     description:
-      "Exterior painting starts long before the first coat. Surfaces are cleaned, scraped, repaired, and primed where needed so the final finish looks better and lasts longer in Mississippi heat and humidity.",
+      "Exterior painting starts long before the first coat. Surfaces are cleaned, pressure washed, scraped, repaired, and primed where needed so the final finish looks better and lasts longer in Mississippi heat and humidity.",
     serviceImage: "/images/meadowlark/services/exterior-painting.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
   {
@@ -41,17 +44,17 @@ export const paintingServices: PaintingServices[] = [
     description:
       "Cabinet painting is ideal for homeowners who want a cleaner, brighter look while keeping the layout they already love. The process focuses on prep, sanding, priming, and smooth topcoats for a polished result.",
     serviceImage: "/images/meadowlark/services/kitchen-cabinet-painting.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
   {
     _id: "wr-service-prep",
-    serviceName: "Drywall Repair & Surface Prep",
+    serviceName: "Sheet Rock & Drywall Repair",
     shortSummary: "A quality finish starts with smooth walls and solid prep work.",
     description:
-      "Cracks, dents, nail pops, and texture issues can ruin the look of new paint. Will handles the prep work that makes the finished project look clean, even, and professionally done.",
+      "Cracks, dents, nail pops, seam damage, and texture issues can ruin the look of new paint. Will handles sheet rock repair, drywall patching, and the prep work that makes the finished project look clean, even, and professionally done.",
     serviceImage: "/images/meadowlark/services/wall-repair-prep.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
   {
@@ -61,7 +64,7 @@ export const paintingServices: PaintingServices[] = [
     description:
       "Baseboards, crown molding, window trim, doors, and accent details all need a steady hand. Careful trim painting adds contrast, sharpens the space, and elevates the overall look of the home.",
     serviceImage: "/images/meadowlark/services/trim-detail-work.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
   {
@@ -71,8 +74,18 @@ export const paintingServices: PaintingServices[] = [
     description:
       "Decks, fences, and wood accents need the right products and prep to stand up to the weather. Staining and sealing help preserve the wood while improving the look of the entire property.",
     serviceImage: "/images/meadowlark/services/deck-fence-staining.png",
-    serviceAreaContext: "Flowood, Brandon, Jackson, and nearby communities",
+    serviceAreaContext: primaryServiceArea,
     isFeatured: true,
+  },
+  {
+    _id: "wr-service-pressure-washing",
+    serviceName: "Pressure Washing",
+    shortSummary: "Prep exterior surfaces the right way before paint and cleanup work begins.",
+    description:
+      "Pressure washing helps remove dirt, buildup, mildew, and loose surface grime before painting and can also be a standalone service for homeowners who want a cleaner exterior.",
+    serviceImage: "/images/meadowlark/services/exterior-painting.png",
+    serviceAreaContext: primaryServiceArea,
+    isFeatured: false,
   },
 ];
 
@@ -269,7 +282,7 @@ export const trustIndicators: TrustIndicators[] = [
     title: "Flowood-Based Service",
     indicatorImage: "/images/meadowlark/trust/bismarcks-trusted-painters.png",
     shortDescription:
-      "Serving Flowood, Brandon, Jackson, Pearl, and nearby communities.",
+      "Serving Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.",
     displayOrder: 1,
     isActive: true,
   },

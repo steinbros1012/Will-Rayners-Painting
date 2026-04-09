@@ -6,7 +6,7 @@ export const Head = () => {
       <title>Home | Will Rayners Custom Painting</title>
       <meta
         name="description"
-        content="Will Rayners Custom Painting provides interior and exterior painting, cabinet refinishing, and detailed prep work in Flowood, Mississippi and the Jackson metro."
+        content="Will Rayners Custom Painting provides interior and exterior painting, sheet rock repair, pressure washing, cabinet refinishing, and detailed prep work across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities."
       />
     </>
   );

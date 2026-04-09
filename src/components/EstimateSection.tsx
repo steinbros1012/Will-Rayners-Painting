@@ -95,7 +95,7 @@ export default function EstimateSection() {
               Get a quote for your project.
             </h2>
             <p className="font-paragraph text-base text-white/60 mb-10 leading-relaxed">
-              Fast response, clear pricing, and detail-focused work for homes across Flowood and the Jackson metro.
+              Fast response, clear pricing, and detail-focused work for homes across Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.
             </p>
 
             <a
@@ -178,6 +178,8 @@ export default function EstimateSection() {
                       <SelectItem value="Exterior Painting">Exterior Painting</SelectItem>
                       <SelectItem value="Interior & Exterior">Interior & Exterior</SelectItem>
                       <SelectItem value="Cabinet Painting">Cabinet Painting</SelectItem>
+                      <SelectItem value="Sheet Rock / Drywall Repair">Sheet Rock / Drywall Repair</SelectItem>
+                      <SelectItem value="Pressure Washing">Pressure Washing</SelectItem>
                       <SelectItem value="Deck Staining">Deck Staining</SelectItem>
                       <SelectItem value="Other">Other</SelectItem>
                     </SelectContent>

@@ -29,7 +29,7 @@ export default function Footer() {
         {/* About */}
         <div>
           <p className="font-paragraph text-sm text-white/60 leading-relaxed">
-            Interior, exterior, cabinet, and detail painting for homeowners across Flowood and the Jackson metro. Careful prep, clean finishes, and honest work from start to finish.
+            Interior and exterior painting, sheet rock repair, pressure washing, cabinets, and detail work for homeowners across Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function Footer() {
               <span>116 Stockton Dr<br />Flowood, MS 39232</span>
             </div>
             <p className="font-paragraph text-sm text-white/60">
-              Serving Flowood, Brandon, Jackson, Pearl, Madison & surrounding communities.
+              Serving Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson & surrounding communities.
             </p>
           </div>
         </div>

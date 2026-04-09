@@ -67,13 +67,13 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-5 font-paragraph text-base text-secondary leading-relaxed">
                 <p>
-                  Will Rayners Custom Painting is a local business proudly serving Flowood, Mississippi and the surrounding communities. Every project is approached with the kind of care, consistency, and respect homeowners want when they invite someone into their space.
+                  Will Rayners Custom Painting is a local business proudly serving Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and surrounding communities. Every project is approached with the kind of care, consistency, and respect homeowners want when they invite someone into their space.
                 </p>
                 <p>
                   Will has built his reputation on doing solid work, communicating clearly, and taking the time to get the details right. Whether the project is a quick repaint or a more involved transformation, the goal stays the same: deliver results the customer feels proud of when the job is done.
                 </p>
                 <p>
-                  From the first estimate to the final coat, the process is built around clear communication and quality that shows. If you're in the Flowood area and looking for dependable painting professionals, Will Rayners Custom Painting would be honored to help.
+                  From the first estimate to the final coat, the process is built around clear communication and quality that shows. Whether the job calls for painting, sheet rock repair, or pressure washing, Will Rayners Custom Painting would be honored to help.
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default function AboutPage() {
               <div className="mt-10 grid grid-cols-2 gap-4">
                 {[
                   { label: 'Based in', value: 'Flowood, MS' },
-                  { label: 'Service Area', value: 'Jackson Metro' },
+                  { label: 'Service Area', value: 'Pearl to Jackson Metro' },
                   { label: 'Specialties', value: 'Interior & Exterior' },
                   { label: 'Estimates', value: 'Always Free' },
                 ].map((fact) => (
@@ -157,7 +157,7 @@ export default function AboutPage() {
 
               <div className="flex flex-col gap-6">
                 {[
-                  { title: 'Local & Accountable', desc: 'Based in Flowood — Will is invested in the community he lives and works in.' },
+                  { title: 'Local & Accountable', desc: 'Based in Flowood — Will is invested in the communities he serves across Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, and Jackson.' },
                   { title: 'Proven Track Record', desc: 'Consistent five-star reviews pointing to quality work and a smooth experience.' },
                   { title: 'Clean & Respectful', desc: 'Work areas stay tidy. Your home is treated with care throughout the job.' },
                   { title: 'Transparent Pricing', desc: 'Detailed estimates with no hidden fees or surprise charges at the end.' },
@@ -193,7 +193,7 @@ export default function AboutPage() {
                   <h3 className="font-heading text-2xl text-white">Service Area</h3>
                 </div>
                 <p className="font-paragraph text-sm text-white/70 leading-relaxed mb-4">
-                  Proudly serving homeowners across Flowood, Brandon, Jackson, Pearl, Madison, and nearby communities throughout the Jackson metro.
+                  Proudly serving homeowners across Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.
                 </p>
                 <p className="font-paragraph text-sm text-white/50">
                   116 Stockton Dr, Flowood, MS 39232

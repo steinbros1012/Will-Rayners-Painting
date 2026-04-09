@@ -77,7 +77,7 @@ export default function ContactPage() {
               Let's talk about your project.
             </h1>
             <p className="font-paragraph text-base text-white/70 mb-12 leading-relaxed">
-              Fill out the form, or give Will a call. You'll get a clear, no-pressure estimate and straightforward answers about your painting project.
+              Fill out the form, or give Will a call. You'll get a clear, no-pressure estimate and straightforward answers about painting, sheet rock repair, pressure washing, and other home projects.
             </p>
 
             {/* Contact details */}
@@ -203,6 +203,8 @@ export default function ContactPage() {
                         <SelectItem value="Exterior Painting">Exterior Painting</SelectItem>
                         <SelectItem value="Interior & Exterior">Interior & Exterior</SelectItem>
                         <SelectItem value="Cabinet Painting">Cabinet Painting</SelectItem>
+                        <SelectItem value="Sheet Rock / Drywall Repair">Sheet Rock / Drywall Repair</SelectItem>
+                        <SelectItem value="Pressure Washing">Pressure Washing</SelectItem>
                         <SelectItem value="Deck Staining">Deck Staining</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
