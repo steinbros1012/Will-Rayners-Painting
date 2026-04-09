@@ -44,6 +44,7 @@ export default function HomePage() {
   const [galleryProjects, setGalleryProjects] = useState<ProjectGallery[]>([]);
   const [featuredReview, setFeaturedReview] = useState<CustomerReviews | null>(null);
   const [heroIndex, setHeroIndex] = useState(0);
+  const [loadedHeroSlides, setLoadedHeroSlides] = useState<Set<number>>(new Set([0]));
 
   useEffect(() => {
     setServices(paintingServices.filter((s) => s.isFeatured));
@@ -52,12 +53,33 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
+    siteImages.heroSlides.forEach((src, index) => {
+      const image = new window.Image();
+      image.src = src;
+      image.onload = () => {
+        setLoadedHeroSlides((current) => {
+          if (current.has(index)) {
+            return current;
+          }
+
+          const next = new Set(current);
+          next.add(index);
+          return next;
+        });
+      };
+    });
+  }, []);
+
+  useEffect(() => {
     const interval = window.setInterval(() => {
-      setHeroIndex((current) => (current + 1) % siteImages.heroSlides.length);
+      setHeroIndex((current) => {
+        const nextIndex = (current + 1) % siteImages.heroSlides.length;
+        return loadedHeroSlides.has(nextIndex) ? nextIndex : current;
+      });
     }, 4500);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [loadedHeroSlides]);
 
   const projectViewLabels: Record<string, { left: string; right: string }> = {
     'wr-project-nick-cappony': { left: 'View 1', right: 'View 2' },
@@ -76,7 +98,14 @@ export default function HomePage() {
       <Header />
 
       {/* ─── HERO — Full-Bleed Background ─── */}
-      <section className="relative isolate min-h-screen overflow-hidden bg-primary">
+      <section
+        className="relative isolate min-h-screen overflow-hidden bg-[#111827]"
+        style={{
+          backgroundImage: `url(${siteImages.heroSlides[0]})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }}
+      >
         <div className="absolute inset-0">
           {siteImages.heroSlides.map((src, index) => (
             <motion.div
@@ -92,12 +121,14 @@ export default function HomePage() {
                 alt=""
                 width={1600}
                 loading={index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : 'auto'}
+                decoding={index === 0 ? 'sync' : 'async'}
                 className="h-full w-full object-cover"
               />
             </motion.div>
           ))}
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,18,33,0.10)_0%,rgba(7,18,33,0.06)_35%,rgba(7,18,33,0.28)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_38%,rgba(8,22,41,0.28),transparent_34%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,18,33,0.10)_0%,rgba(7,18,33,0.04)_35%,rgba(7,18,33,0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_38%,rgba(8,22,41,0.20),transparent_36%)]" />
         </div>
 
         <div className="relative mx-auto flex min-h-screen max-w-[100rem] items-end px-6 pb-12 pt-32 lg:px-16 lg:pb-16 lg:pt-40">
