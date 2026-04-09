@@ -9,11 +9,11 @@ const primaryServiceArea =
   "Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Flowood, Crystal Springs, Jackson, and nearby communities";
 
 export const siteImages = {
-  logo: "/images/meadowlark/branding/logo.jpg",
-  hero: "/images/meadowlark/home/hero.png",
-  aboutOwner: "/images/meadowlark/about/owner-portrait.jpg",
+  logo: "/images/will-rayners/branding/business-card.png",
+  hero: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
+  aboutOwner: "/images/will-rayners/jobs/post-frame-building/07-finished-side.png",
   aboutWork: "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
-  galleryFallback: "/images/meadowlark/gallery/fallback.png",
+  galleryFallback: "/images/will-rayners/jobs/nick-cappony/02-driveway-front-view.png",
 } as const;
 
 export const paintingServices: PaintingServices[] = [
@@ -23,7 +23,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Clean walls, crisp trim lines, and rooms that feel new again.",
     description:
       "From single-room refreshes to full-home repaints, Will Rayners Custom Painting handles walls, ceilings, trim, and doors with careful prep, sharp cut-ins, and a finish built to hold up to daily life.",
-    serviceImage: "/images/meadowlark/services/interior-painting.png",
+    serviceImage: "/images/will-rayners/jobs/interior-stairwell-refresh/02-after.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -33,7 +33,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Protect curb appeal with durable coatings and proper prep.",
     description:
       "Exterior painting starts long before the first coat. Surfaces are cleaned, pressure washed, scraped, repaired, and primed where needed so the final finish looks better and lasts longer in Mississippi heat and humidity.",
-    serviceImage: "/images/meadowlark/services/exterior-painting.png",
+    serviceImage: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -43,7 +43,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Update kitchens and built-ins without the cost of replacement.",
     description:
       "Cabinet painting is ideal for homeowners who want a cleaner, brighter look while keeping the layout they already love. The process focuses on prep, sanding, priming, and smooth topcoats for a polished result.",
-    serviceImage: "/images/meadowlark/services/kitchen-cabinet-painting.png",
+    serviceImage: "/images/will-rayners/jobs/interior-stairwell-refresh/02-after.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -53,7 +53,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "A quality finish starts with smooth walls and solid prep work.",
     description:
       "Cracks, dents, nail pops, seam damage, and texture issues can ruin the look of new paint. Will handles sheet rock repair, drywall patching, and the prep work that makes the finished project look clean, even, and professionally done.",
-    serviceImage: "/images/meadowlark/services/wall-repair-prep.png",
+    serviceImage: "/images/will-rayners/jobs/ceiling-wall-repair-repaint/10-finished-room-angle-1.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -63,7 +63,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "The detail work that makes the entire room feel finished.",
     description:
       "Baseboards, crown molding, window trim, doors, and accent details all need a steady hand. Careful trim painting adds contrast, sharpens the space, and elevates the overall look of the home.",
-    serviceImage: "/images/meadowlark/services/trim-detail-work.png",
+    serviceImage: "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -73,7 +73,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Bring outdoor wood surfaces back to life with a lasting finish.",
     description:
       "Decks, fences, and wood accents need the right products and prep to stand up to the weather. Staining and sealing help preserve the wood while improving the look of the entire property.",
-    serviceImage: "/images/meadowlark/services/deck-fence-staining.png",
+    serviceImage: "/images/will-rayners/jobs/porch-deck-refresh/02-after.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: true,
   },
@@ -83,7 +83,7 @@ export const paintingServices: PaintingServices[] = [
     shortSummary: "Prep exterior surfaces the right way before paint and cleanup work begins.",
     description:
       "Pressure washing helps remove dirt, buildup, mildew, and loose surface grime before painting and can also be a standalone service for homeowners who want a cleaner exterior.",
-    serviceImage: "/images/meadowlark/services/exterior-painting.png",
+    serviceImage: "/images/will-rayners/jobs/brick-wall-retaining-wall/02-after.png",
     serviceAreaContext: primaryServiceArea,
     isFeatured: false,
   },
@@ -189,64 +189,31 @@ export const projectGallery: ProjectGallery[] = [
     projectLocation: "Mississippi",
   },
   {
-    _id: "wr-project-living-room",
-    projectTitle: "Full Interior Color Refresh",
-    beforePhoto: "/images/meadowlark/projects/312acb2a-before.avif",
-    afterPhoto: "/images/meadowlark/projects/312acb2a-after.png",
+    _id: "wr-project-porch-deck",
+    projectTitle: "Front Porch Deck Refresh",
+    beforePhoto: "/images/will-rayners/jobs/porch-deck-refresh/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/porch-deck-refresh/02-after.png",
     projectDescription:
-      "A dated main living area was brightened with fresh wall color, updated trim, and cleaner contrast throughout the open floor plan.",
-    projectLocation: "Flowood, MS",
-    dateCompleted: "2025-10-12",
+      "This porch deck went from raw wood boards to a clean, finished painted surface that brightened the entire front entry.",
+    projectLocation: "Mississippi",
   },
   {
-    _id: "wr-project-cabinets",
-    projectTitle: "Kitchen Cabinet Makeover",
-    beforePhoto: "/images/meadowlark/projects/13c1f2c0-before.avif",
-    afterPhoto: "/images/meadowlark/projects/13c1f2c0-after.png",
+    _id: "wr-project-deck-stairs",
+    projectTitle: "Deck Stair & Rail Refresh",
+    beforePhoto: "/images/will-rayners/jobs/deck-stair-refresh/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/deck-stair-refresh/02-after.png",
     projectDescription:
-      "Existing cabinets were prepped and refinished to give the kitchen a brighter, more custom look without a full remodel.",
-    projectLocation: "Brandon, MS",
-    dateCompleted: "2025-11-07",
+      "Fresh paint transformed this stair and rail system from weathered wood into a crisp finished feature that ties into the deck above.",
+    projectLocation: "Mississippi",
   },
   {
-    _id: "wr-project-exterior",
-    projectTitle: "Exterior Repaint With Crisp Trim",
-    beforePhoto: "/images/meadowlark/projects/251399c4-before.avif",
-    afterPhoto: "/images/meadowlark/projects/251399c4-after.png",
+    _id: "wr-project-stairwell",
+    projectTitle: "Interior Stairwell Repaint",
+    beforePhoto: "/images/will-rayners/jobs/interior-stairwell-refresh/01-before.png",
+    afterPhoto: "/images/will-rayners/jobs/interior-stairwell-refresh/02-after.png",
     projectDescription:
-      "This exterior repaint improved curb appeal with a more modern body color, cleaner trim definition, and weather-ready coatings.",
-    projectLocation: "Pearl, MS",
-    dateCompleted: "2025-09-19",
-  },
-  {
-    _id: "wr-project-bedroom",
-    projectTitle: "Bedroom Repaint & Wall Prep",
-    beforePhoto: "/images/meadowlark/projects/08420ba1-before.avif",
-    afterPhoto: "/images/meadowlark/projects/08420ba1-after.png",
-    projectDescription:
-      "Wall prep and a new neutral color transformed this room into a cleaner, calmer space with a more finished feel.",
-    projectLocation: "Jackson, MS",
-    dateCompleted: "2026-01-15",
-  },
-  {
-    _id: "wr-project-theater",
-    projectTitle: "Accent Room Transformation",
-    beforePhoto: "/images/meadowlark/projects/d2182179-before.avif",
-    afterPhoto: "/images/meadowlark/projects/d2182179-after.png",
-    projectDescription:
-      "A bold color palette and precise edging turned this specialty room into a dramatic, high-impact feature space.",
-    projectLocation: "Madison, MS",
-    dateCompleted: "2025-08-04",
-  },
-  {
-    _id: "wr-project-exterior-two",
-    projectTitle: "Whole-Home Exterior Update",
-    beforePhoto: "/images/meadowlark/projects/d5d5f8b4-before.avif",
-    afterPhoto: "/images/meadowlark/projects/d5d5f8b4-after.png",
-    projectDescription:
-      "Prep, priming, and premium exterior paint helped this home look sharper while adding long-term protection against the elements.",
-    projectLocation: "Reservoir Area, MS",
-    dateCompleted: "2025-07-25",
+      "The stairwell went from multiple bold colors and unfinished patches to a cleaner, brighter interior finish.",
+    projectLocation: "Mississippi",
   },
 ];
 
@@ -297,7 +264,7 @@ export const trustIndicators: TrustIndicators[] = [
   {
     _id: "wr-trust-local",
     title: "Flowood-Based Service",
-    indicatorImage: "/images/meadowlark/trust/bismarcks-trusted-painters.png",
+    indicatorImage: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
     shortDescription:
       "Serving Flowood, Pearl, Gluckstadt, Brandon, Ridgeland, Madison, Crystal Springs, Jackson, and nearby communities.",
     displayOrder: 1,
@@ -306,7 +273,7 @@ export const trustIndicators: TrustIndicators[] = [
   {
     _id: "wr-trust-estimates",
     title: "Free Estimates",
-    indicatorImage: "/images/meadowlark/trust/free-no-obligation-estimates.png",
+    indicatorImage: "/images/will-rayners/branding/business-card.png",
     shortDescription:
       "Straightforward quotes and clear communication before the work starts.",
     displayOrder: 2,
@@ -315,7 +282,7 @@ export const trustIndicators: TrustIndicators[] = [
   {
     _id: "wr-trust-detail",
     title: "Careful Prep & Cleanup",
-    indicatorImage: "/images/meadowlark/trust/superior-quality-workmanship.png",
+    indicatorImage: "/images/will-rayners/jobs/ceiling-wall-repair-repaint/10-finished-room-angle-1.png",
     shortDescription:
       "Surface prep, crisp lines, and respect for your home throughout the job.",
     displayOrder: 3,
@@ -324,7 +291,7 @@ export const trustIndicators: TrustIndicators[] = [
   {
     _id: "wr-trust-reviews",
     title: "Five-Star Reputation",
-    indicatorImage: "/images/meadowlark/trust/high-customer-satisfaction.png",
+    indicatorImage: "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
     shortDescription:
       "Backed by real customer feedback and repeat business.",
     displayOrder: 4,
