@@ -242,10 +242,13 @@ export default function HomePage() {
                 <p className="font-paragraph text-sm text-secondary group-hover:text-white/70 leading-relaxed transition-colors duration-300">
                   {service.shortSummary}
                 </p>
-                <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <Link
+                  to="/services"
+                  className="mt-6 inline-flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0"
+                >
                   <span className="font-paragraph text-xs uppercase tracking-widest text-accent-gold font-semibold">Learn more</span>
                   <ArrowRight className="w-3.5 h-3.5 text-accent-gold" />
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

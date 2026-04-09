@@ -166,53 +166,91 @@ export default function ReviewsPage() {
       )}
 
       {/* ─── OTHER REVIEWS ─── */}
-      <section className="bg-background py-16 lg:py-24">
-        <div className="mx-auto max-w-[100rem] px-6 lg:px-16">
+      <section
+        className="py-16 lg:py-24 relative overflow-hidden"
+        style={{ background: 'linear-gradient(160deg, #0a1628 0%, #0f1f38 50%, #0a1628 100%)' }}
+      >
+        {/* Ambient top glow */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(ellipse 80% 40% at 50% 0%, rgba(240,180,41,0.07) 0%, transparent 60%)' }}
+        />
+        {/* Subtle dot pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+        />
+
+        <div className="mx-auto max-w-[100rem] px-6 lg:px-16 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-10"
+            className="mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-4"
           >
-            <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-3">More Reviews</p>
-            <h2 className="font-heading text-4xl lg:text-5xl text-foreground">More happy customers.</h2>
+            <div>
+              <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-3">More Reviews</p>
+              <h2 className="font-heading text-4xl lg:text-5xl text-white">More happy customers.</h2>
+            </div>
+            <div className="flex items-center gap-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
+              ))}
+              <span className="ml-1 font-paragraph text-sm text-white/50">5.0 average</span>
+            </div>
           </motion.div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {restReviews.map((review, index) => (
               <motion.div
                 key={review._id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative rounded-2xl bg-muted p-7 transition-all duration-400 hover:bg-primary hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(28,53,87,0.18)] overflow-hidden"
+                transition={{ duration: 0.6, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative rounded-2xl bg-white/[0.04] border border-white/[0.08] p-7 hover:bg-white/[0.08] hover:border-accent-gold/40 hover:-translate-y-1.5 hover:shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition-all duration-400 overflow-hidden"
               >
-                {/* Background quote decoration */}
+                {/* Gold left accent bar */}
+                <div className="absolute left-0 top-8 bottom-8 w-[3px] rounded-full bg-accent-gold/30 group-hover:bg-accent-gold transition-colors duration-300" />
+
+                {/* Large decorative quote mark */}
                 <div
-                  className="absolute top-3 right-5 font-heading text-[7rem] text-foreground/[0.05] group-hover:text-white/[0.06] leading-none select-none pointer-events-none transition-colors duration-300"
+                  className="absolute top-2 right-5 font-heading text-[8rem] text-accent-gold/[0.08] group-hover:text-accent-gold/[0.14] leading-none select-none pointer-events-none transition-colors duration-400"
                   aria-hidden="true"
                 >
                   &#8220;
                 </div>
 
-                <div className="mb-5 flex gap-1">
+                {/* Stars */}
+                <div className="mb-5 flex gap-1 relative z-10">
                   {[...Array(review.rating || 5)].map((_, i) => (
                     <Star key={i} className="h-4 w-4 fill-accent-gold text-accent-gold" />
                   ))}
                 </div>
-                <p className="mb-6 font-paragraph text-base leading-relaxed text-foreground transition-colors duration-300 group-hover:text-white relative z-10">
+
+                {/* Review text */}
+                <p className="mb-7 font-paragraph text-base leading-relaxed text-white/75 group-hover:text-white/90 transition-colors duration-300 relative z-10">
                   "{review.reviewText}"
                 </p>
-                <div className="border-t border-gray-200 group-hover:border-white/20 pt-4 transition-colors duration-300">
-                  <p className="font-paragraph text-sm font-semibold text-foreground transition-colors duration-300 group-hover:text-white">
-                    {review.customerName}
-                  </p>
-                  {review.reviewSource && (
-                    <p className="mt-0.5 font-paragraph text-xs text-secondary transition-colors duration-300 group-hover:text-white/60">
-                      {review.reviewSource}
+
+                {/* Customer row */}
+                <div className="flex items-center gap-3 pt-5 border-t border-white/[0.08] group-hover:border-white/[0.15] transition-colors duration-300">
+                  <div className="w-9 h-9 rounded-full bg-accent-gold/20 group-hover:bg-accent-gold/30 flex items-center justify-center flex-shrink-0 transition-colors duration-300">
+                    <span className="font-heading text-sm font-semibold text-accent-gold">
+                      {review.customerName.charAt(0)}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-paragraph text-sm font-semibold text-white">
+                      {review.customerName}
                     </p>
-                  )}
+                    {review.reviewSource && (
+                      <p className="mt-0.5 font-paragraph text-xs text-white/40">
+                        {review.reviewSource}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </motion.div>
             ))}
