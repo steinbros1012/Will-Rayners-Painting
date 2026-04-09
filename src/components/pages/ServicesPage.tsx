@@ -120,7 +120,7 @@ export default function ServicesPage() {
                         src={service.serviceImage}
                         alt={service.serviceName}
                         width={600}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                   ) : (
@@ -149,8 +149,8 @@ export default function ServicesPage() {
         <div className="max-w-[100rem] mx-auto px-6 lg:px-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
@@ -162,8 +162,8 @@ export default function ServicesPage() {
               </p>
             </motion.div>
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col sm:flex-row lg:justify-end gap-4"

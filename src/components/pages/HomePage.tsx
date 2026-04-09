@@ -83,7 +83,7 @@ export default function HomePage() {
               key={src}
               initial={false}
               animate={{ opacity: index === heroIndex ? 1 : 0 }}
-              transition={{ duration: 1 }}
+              transition={{ duration: 0.8 }}
               className="absolute inset-0"
               aria-hidden={index !== heroIndex}
             >
@@ -91,6 +91,7 @@ export default function HomePage() {
                 src={src}
                 alt=""
                 width={1600}
+                loading={index === 0 ? 'eager' : 'lazy'}
                 className="h-full w-full object-cover"
               />
             </motion.div>
@@ -286,7 +287,7 @@ export default function HomePage() {
                         src={project.beforePhoto || siteImages.galleryFallback}
                         alt={`${project.projectTitle} — ${labels.left}`}
                         width={700}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
@@ -302,7 +303,7 @@ export default function HomePage() {
                         src={project.afterPhoto || siteImages.galleryFallback}
                         alt={`${project.projectTitle} — ${labels.right}`}
                         width={700}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300" />
@@ -396,8 +397,8 @@ export default function HomePage() {
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="flex gap-5 py-5 border-b border-gray-100 last:border-0 group"
@@ -426,7 +427,7 @@ export default function HomePage() {
                   src={siteImages.aboutWork}
                   alt="Will Rayners Painting craftsmanship"
                   width={700}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                 />
               </div>
               {/* Gold accent block */}

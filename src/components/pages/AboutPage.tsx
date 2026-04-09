@@ -71,8 +71,8 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-14 lg:gap-24 items-start">
             {/* Text */}
             <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
               <h2 className="font-heading text-4xl lg:text-5xl text-foreground mb-8 leading-tight">
@@ -124,7 +124,7 @@ export default function AboutPage() {
                   src={siteImages.aboutWork}
                   alt="Will Rayners Painting work"
                   width={700}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover"
                   originWidth={1080}
                   originHeight={1636}
                   focalPointX={47.712962962962955}
@@ -169,7 +169,7 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                 className="group bg-white/[0.04] border border-white/10 rounded-2xl p-8 lg:p-10 hover:bg-white/[0.07] hover:border-accent-gold/30 hover:-translate-y-1 transition-all duration-400"
               >
-                <span className="font-heading text-5xl text-accent-gold italic leading-none block mb-4 group-hover:scale-110 inline-block transition-transform duration-300">
+                <span className="font-heading text-5xl text-accent-gold italic leading-none block mb-4">
                   {v.number}
                 </span>
                 <h3 className="font-heading text-2xl text-white mb-3">{v.title}</h3>
@@ -206,8 +206,8 @@ export default function AboutPage() {
                 ].map((item, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 8 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                     className="flex gap-5 py-5 border-b border-gray-200 last:border-0 group"
