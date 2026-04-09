@@ -76,14 +76,13 @@ export default function HomePage() {
         const nextIndex = (current + 1) % siteImages.heroSlides.length;
         return loadedHeroSlides.has(nextIndex) ? nextIndex : current;
       });
-    }, 4500);
+    }, 3200);
 
     return () => window.clearInterval(interval);
   }, [loadedHeroSlides]);
 
   const projectViewLabels: Record<string, { left: string; right: string }> = {
     'wr-project-nick-cappony': { left: 'View 1', right: 'View 2' },
-    'wr-project-brick-wall-retaining': { left: 'View 1', right: 'View 2' },
   };
 
   const stats = [

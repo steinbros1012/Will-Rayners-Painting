@@ -268,9 +268,8 @@ export default function GalleryPage() {
 
           <div className="flex flex-col gap-16 lg:gap-24">
             {projects.map((project, index) => {
-              const isProjectViews = project._id === 'wr-project-brick-wall-retaining';
-              const leftLabel = isProjectViews ? 'View 1' : 'Before';
-              const rightLabel = isProjectViews ? 'View 2' : 'After';
+              const leftLabel = 'Before';
+              const rightLabel = 'After';
 
               return (
                 <motion.div
