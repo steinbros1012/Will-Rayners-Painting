@@ -20,19 +20,33 @@ export default function ServicesPage() {
       <Header />
 
       {/* ─── PAGE HEADER ─── */}
-      <section className="bg-primary pt-32 pb-20 lg:pt-40 lg:pb-24">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
+      <section
+        className="bg-primary pt-32 pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden"
+        style={{ backgroundImage: 'radial-gradient(ellipse 60% 70% at 80% 50%, rgba(240,180,41,0.06) 0%, transparent 70%)' }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+        />
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-4">
               What We Offer
             </p>
-            <h1 className="font-heading text-6xl lg:text-8xl text-white leading-none mb-6">
+            <h1 className="font-heading text-6xl lg:text-8xl text-white leading-none mb-4">
               Our Services
             </h1>
+            {/* Animated gold underline */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="origin-left h-0.5 w-20 bg-accent-gold mb-6"
+            />
             <p className="font-paragraph text-base lg:text-lg text-white/70 max-w-2xl">
               Interior, exterior, cabinets, trim, sheet rock repair, pressure washing, and prep work — every service is built around careful workmanship and a finish that lasts.
             </p>
@@ -40,7 +54,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ─── SERVICES LIST — Numbered rows ─── */}
+      {/* ─── SERVICES LIST ─── */}
       <section className="py-12 lg:py-20 bg-background">
         <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
           {services.map((service, index) => (
@@ -49,13 +63,16 @@ export default function ServicesPage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.05 * index }}
-              className="group border-t border-gray-100 py-10 lg:py-14"
+              transition={{ duration: 0.55, delay: 0.05 * index, ease: [0.22, 1, 0.36, 1] }}
+              className="group border-t border-gray-100 py-10 lg:py-14 relative"
             >
-              <div className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-center ${index % 2 !== 0 ? '' : ''}`}>
+              {/* Gold left accent bar */}
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-accent-gold scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500" />
+
+              <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center pl-0 group-hover:pl-4 transition-all duration-500">
                 {/* Number */}
                 <div className="lg:col-span-1 hidden lg:block">
-                  <span className="font-heading text-6xl text-accent-gold italic leading-none">
+                  <span className="font-heading text-6xl text-accent-gold italic leading-none group-hover:scale-110 inline-block transition-transform duration-300">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
@@ -67,7 +84,7 @@ export default function ServicesPage() {
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
-                  <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-3 group-hover:text-primary transition-colors">
+                  <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {service.serviceName}
                   </h2>
                   {service.shortSummary && (
@@ -85,21 +102,26 @@ export default function ServicesPage() {
                       Serving: {service.serviceAreaContext}
                     </p>
                   )}
+                  {/* Hover arrow */}
+                  <div className="mt-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300">
+                    <span className="font-paragraph text-xs uppercase tracking-widest text-accent-gold font-semibold">Get estimate</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-accent-gold" />
+                  </div>
                 </div>
 
                 {/* Image */}
                 <div className="lg:col-span-5">
                   {service.serviceImage ? (
-                    <div className="aspect-[16/9] overflow-hidden rounded">
+                    <div className="aspect-[16/9] overflow-hidden rounded-xl">
                       <Image
                         src={service.serviceImage}
                         alt={service.serviceName}
                         width={600}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                     </div>
                   ) : (
-                    <div className="aspect-[16/9] bg-muted rounded flex items-center justify-center">
+                    <div className="aspect-[16/9] bg-muted rounded-xl flex items-center justify-center">
                       <span className="font-heading text-5xl text-accent-gold italic">
                         {String(index + 1).padStart(2, '0')}
                       </span>
@@ -113,32 +135,50 @@ export default function ServicesPage() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-20 lg:py-28 bg-foreground">
-        <div className="max-w-[100rem] mx-auto px-6 lg:px-16">
+      <section
+        className="py-20 lg:py-28 relative overflow-hidden"
+        style={{ background: 'linear-gradient(135deg, #0f1923 0%, #1a2e44 100%)' }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+        />
+        <div className="max-w-[100rem] mx-auto px-6 lg:px-16 relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
               <h2 className="font-heading text-5xl lg:text-6xl text-white mb-4">
                 Not sure which service you need?
               </h2>
               <p className="font-paragraph text-base text-white/70">
                 Call Will directly or fill out the estimate form — he'll talk through the project and recommend the right approach.
               </p>
-            </div>
-            <div className="flex flex-col sm:flex-row lg:justify-end gap-4">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col sm:flex-row lg:justify-end gap-4"
+            >
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded hover:bg-accent-gold/90 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded-full hover:bg-accent-gold/90 hover:shadow-[0_6px_28px_rgba(240,180,41,0.4)] transition-all duration-300"
               >
                 Get Free Estimate <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="tel:6012600061"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white font-paragraph font-semibold px-8 py-4 rounded hover:border-white transition-colors"
+                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white font-paragraph font-semibold px-8 py-4 rounded-full hover:border-white/70 hover:bg-white/5 transition-all duration-300"
               >
                 <Phone className="w-4 h-4" />
                 (601) 260-0061
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

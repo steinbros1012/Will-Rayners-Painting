@@ -100,7 +100,7 @@ export default function EstimateSection() {
 
             <a
               href="tel:6012600061"
-              className="inline-flex items-center gap-3 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded hover:bg-accent-gold/90 transition-colors mb-10"
+              className="inline-flex items-center gap-3 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded-full hover:bg-accent-gold/90 hover:shadow-[0_6px_28px_rgba(240,180,41,0.4)] transition-all duration-300 mb-10"
             >
               <Phone className="w-5 h-5" />
               Call Now: (601) 260-0061
@@ -127,7 +127,7 @@ export default function EstimateSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="bg-white rounded p-8 lg:p-10"
+            className="bg-white rounded-2xl p-8 lg:p-10 shadow-[0_16px_60px_rgba(0,0,0,0.08)]"
           >
             {isSubmitted ? (
               <div className="text-center py-10">
@@ -235,7 +235,7 @@ export default function EstimateSection() {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-accent-gold text-foreground font-paragraph font-semibold py-5 text-sm rounded hover:bg-accent-gold/90 transition-colors"
+                  className="w-full bg-accent-gold text-foreground font-paragraph font-semibold py-5 text-sm rounded-full hover:bg-accent-gold/90 hover:shadow-[0_6px_28px_rgba(240,180,41,0.4)] transition-all duration-300"
                 >
                   {isSubmitting ? 'Sending…' : 'Get Free Estimate'}
                 </Button>

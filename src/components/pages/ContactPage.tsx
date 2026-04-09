@@ -64,55 +64,82 @@ export default function ContactPage() {
       <div className="min-h-screen grid lg:grid-cols-[1fr_1.2fr] pt-[65px]">
 
         {/* Left: Navy info panel */}
-        <div className="bg-primary px-8 lg:px-14 py-16 lg:py-24 flex flex-col justify-center">
+        <div
+          className="bg-primary px-8 lg:px-14 py-16 lg:py-24 flex flex-col justify-center relative overflow-hidden"
+          style={{ backgroundImage: 'radial-gradient(ellipse 80% 60% at 20% 40%, rgba(240,180,41,0.07) 0%, transparent 70%)' }}
+        >
+          {/* Dot pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.04] pointer-events-none"
+            style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '28px 28px' }}
+          />
+
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10"
           >
             <p className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-4">
               Contact
             </p>
-            <h1 className="font-heading text-5xl lg:text-6xl text-white leading-none mb-6">
+            <h1 className="font-heading text-5xl lg:text-6xl text-white leading-none mb-4">
               Let's talk about your project.
             </h1>
+            {/* Gold accent line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="origin-left h-0.5 w-16 bg-accent-gold mb-8"
+            />
             <p className="font-paragraph text-base text-white/70 mb-12 leading-relaxed">
               Fill out the form, or give Will a call. You'll get a clear, no-pressure estimate and straightforward answers about painting, sheet rock repair, pressure washing, and other home projects.
             </p>
 
             {/* Contact details */}
-            <div className="flex flex-col gap-7">
-              <a href="tel:6012600061" className="flex items-center gap-4 group">
-                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0 group-hover:bg-accent-gold transition-colors">
-                  <Phone className="w-5 h-5 text-white group-hover:text-foreground transition-colors" />
-                </div>
-                <div>
-                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Phone</p>
-                  <p className="font-paragraph text-base text-white font-semibold">(601) 260-0061</p>
-                </div>
-              </a>
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  href: 'tel:6012600061',
+                  icon: <Phone className="w-5 h-5" />,
+                  label: 'Phone',
+                  value: '(601) 260-0061',
+                  isLink: true,
+                },
+                {
+                  href: undefined,
+                  icon: <MapPin className="w-5 h-5" />,
+                  label: 'Address',
+                  value: '116 Stockton Dr\nFlowood, MS 39232',
+                  isLink: false,
+                },
+                {
+                  href: undefined,
+                  icon: <Clock className="w-5 h-5" />,
+                  label: 'Response Time',
+                  value: 'Within 24 hours',
+                  isLink: false,
+                },
+              ].map((item, i) => {
+                const content = (
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-accent-gold transition-all duration-300">
+                      <span className="text-white group-hover:text-foreground transition-colors duration-300">{item.icon}</span>
+                    </div>
+                    <div>
+                      <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">{item.label}</p>
+                      <p className="font-paragraph text-base text-white font-semibold whitespace-pre-line">{item.value}</p>
+                    </div>
+                  </div>
+                );
 
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Address</p>
-                  <p className="font-paragraph text-base text-white">
-                    116 Stockton Dr<br />Flowood, MS 39232
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 bg-white/10 rounded flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="font-paragraph text-xs uppercase tracking-widest text-white/50 mb-0.5">Response Time</p>
-                  <p className="font-paragraph text-base text-white">Within 24 hours</p>
-                </div>
-              </div>
+                return item.isLink ? (
+                  <a key={i} href={item.href}>{content}</a>
+                ) : (
+                  <div key={i}>{content}</div>
+                );
+              })}
             </div>
 
             {/* Expectations */}
@@ -126,7 +153,9 @@ export default function ContactPage() {
                   'Professional consultation',
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-accent-gold flex-shrink-0" />
+                    <div className="w-5 h-5 rounded-full bg-accent-gold/15 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-accent-gold" />
+                    </div>
                     <span className="font-paragraph text-sm text-white/70">{item}</span>
                   </div>
                 ))}
@@ -138,31 +167,43 @@ export default function ContactPage() {
         {/* Right: White form panel */}
         <div className="bg-background px-8 lg:px-14 py-16 lg:py-24 flex flex-col justify-center">
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-xl w-full mx-auto"
           >
             {isSubmitted ? (
-              <div className="text-center py-16">
-                <div className="w-16 h-16 mx-auto mb-6 bg-accent-gold rounded-full flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="text-center py-16"
+              >
+                <div className="w-16 h-16 mx-auto mb-6 bg-accent-gold rounded-full flex items-center justify-center shadow-[0_8px_32px_rgba(240,180,41,0.4)]">
                   <CheckCircle2 className="w-8 h-8 text-foreground" />
                 </div>
                 <h2 className="font-heading text-4xl text-foreground mb-4">Thank You!</h2>
                 <p className="font-paragraph text-base text-secondary">
                   We've received your request and will be in touch shortly.
                 </p>
-              </div>
+              </motion.div>
             ) : (
               <>
-                <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-8">Request a Free Estimate</h2>
+                <h2 className="font-heading text-3xl lg:text-4xl text-foreground mb-2">Request a Free Estimate</h2>
+                <p className="font-paragraph text-sm text-secondary mb-8">All fields marked * are required.</p>
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <Label htmlFor="name" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Full Name *
                     </Label>
-                    <Input id="name" type="text" required value={formData.name}
-                      onChange={(e) => handleChange('name', e.target.value)} className="w-full" />
+                    <Input
+                      id="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => handleChange('name', e.target.value)}
+                      className="w-full rounded-xl focus:ring-2 focus:ring-accent-gold/30 focus:border-accent-gold transition-all duration-200"
+                    />
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
@@ -170,15 +211,27 @@ export default function ContactPage() {
                       <Label htmlFor="phone" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                         Phone *
                       </Label>
-                      <Input id="phone" type="tel" required value={formData.phone}
-                        onChange={(e) => handleChange('phone', e.target.value)} className="w-full" />
+                      <Input
+                        id="phone"
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => handleChange('phone', e.target.value)}
+                        className="w-full rounded-xl focus:ring-2 focus:ring-accent-gold/30 focus:border-accent-gold transition-all duration-200"
+                      />
                     </div>
                     <div>
                       <Label htmlFor="email" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                         Email *
                       </Label>
-                      <Input id="email" type="email" required value={formData.email}
-                        onChange={(e) => handleChange('email', e.target.value)} className="w-full" />
+                      <Input
+                        id="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => handleChange('email', e.target.value)}
+                        className="w-full rounded-xl focus:ring-2 focus:ring-accent-gold/30 focus:border-accent-gold transition-all duration-200"
+                      />
                     </div>
                   </div>
 
@@ -186,8 +239,14 @@ export default function ContactPage() {
                     <Label htmlFor="address" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Property Address *
                     </Label>
-                    <Input id="address" type="text" required value={formData.address}
-                      onChange={(e) => handleChange('address', e.target.value)} className="w-full" />
+                    <Input
+                      id="address"
+                      type="text"
+                      required
+                      value={formData.address}
+                      onChange={(e) => handleChange('address', e.target.value)}
+                      className="w-full rounded-xl focus:ring-2 focus:ring-accent-gold/30 focus:border-accent-gold transition-all duration-200"
+                    />
                   </div>
 
                   <div>
@@ -195,7 +254,7 @@ export default function ContactPage() {
                       Service Needed *
                     </Label>
                     <Select value={formData.serviceNeeded} onValueChange={(v) => handleChange('serviceNeeded', v)} required>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full rounded-xl">
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
                       <SelectContent>
@@ -215,10 +274,14 @@ export default function ContactPage() {
                     <Label htmlFor="projectDetails" className="font-paragraph text-sm text-foreground mb-1.5 block font-medium">
                       Project Details *
                     </Label>
-                    <Textarea id="projectDetails" required value={formData.projectDetails}
+                    <Textarea
+                      id="projectDetails"
+                      required
+                      value={formData.projectDetails}
                       onChange={(e) => handleChange('projectDetails', e.target.value)}
-                      className="w-full min-h-[110px]"
-                      placeholder="Rooms, square footage, colors, conditions — anything that helps." />
+                      className="w-full min-h-[110px] rounded-xl focus:ring-2 focus:ring-accent-gold/30 focus:border-accent-gold transition-all duration-200"
+                      placeholder="Rooms, square footage, colors, conditions — anything that helps."
+                    />
                   </div>
 
                   <div>
@@ -226,7 +289,7 @@ export default function ContactPage() {
                       Preferred Timeline
                     </Label>
                     <Select value={formData.preferredTimeline} onValueChange={(v) => handleChange('preferredTimeline', v)}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full rounded-xl">
                         <SelectValue placeholder="Select a timeline" />
                       </SelectTrigger>
                       <SelectContent>
@@ -242,7 +305,7 @@ export default function ContactPage() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-accent-gold text-foreground font-paragraph font-semibold py-6 text-base rounded hover:bg-accent-gold/90 transition-colors"
+                    className="w-full bg-accent-gold text-foreground font-paragraph font-semibold py-6 text-base rounded-full hover:bg-accent-gold/90 hover:shadow-[0_6px_28px_rgba(240,180,41,0.4)] transition-all duration-300 disabled:opacity-60"
                   >
                     {isSubmitting ? 'Sending…' : 'Request Free Estimate'}
                   </Button>
