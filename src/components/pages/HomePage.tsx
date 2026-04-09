@@ -43,11 +43,20 @@ export default function HomePage() {
   const [services, setServices] = useState<PaintingServices[]>([]);
   const [galleryProjects, setGalleryProjects] = useState<ProjectGallery[]>([]);
   const [featuredReview, setFeaturedReview] = useState<CustomerReviews | null>(null);
+  const [heroIndex, setHeroIndex] = useState(0);
 
   useEffect(() => {
     setServices(paintingServices.filter((s) => s.isFeatured));
     setGalleryProjects(projectGallery.slice(0, 3));
     setFeaturedReview(customerReviews[0] || null);
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setHeroIndex((current) => (current + 1) % siteImages.heroSlides.length);
+    }, 4500);
+
+    return () => window.clearInterval(interval);
   }, []);
 
   const projectViewLabels: Record<string, { left: string; right: string }> = {
@@ -66,123 +75,99 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* ─── HERO ─── */}
-      <section className="min-h-screen grid lg:grid-cols-2">
-        {/* Left: navy panel */}
-        <div
-          className="bg-primary flex items-center px-8 lg:px-16 py-32 lg:py-0 relative overflow-hidden"
-          style={{
-            backgroundImage:
-              'radial-gradient(ellipse 80% 60% at 20% 40%, rgba(240,180,41,0.07) 0%, transparent 70%)',
-          }}
-        >
-          {/* Ambient dot pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.04] pointer-events-none"
-            style={{
-              backgroundImage:
-                'radial-gradient(circle, #ffffff 1px, transparent 1px)',
-              backgroundSize: '28px 28px',
-            }}
-          />
-
-          <div className="max-w-xl relative z-10">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="font-paragraph text-xs uppercase tracking-[0.3em] text-accent-gold font-semibold mb-6"
-            >
-              Flowood, Mississippi
-            </motion.p>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-heading text-6xl lg:text-7xl xl:text-8xl text-white leading-[0.95] mb-4"
-            >
-              Painting Done With Pride.
-            </motion.h1>
-
-            {/* Animated gold accent line */}
+      {/* ─── HERO — Full-Bleed Background ─── */}
+      <section className="relative isolate min-h-screen overflow-hidden bg-primary">
+        <div className="absolute inset-0">
+          {siteImages.heroSlides.map((src, index) => (
             <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="origin-left h-0.5 w-24 bg-accent-gold mb-8"
-            />
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="font-paragraph text-base lg:text-lg text-white/70 mb-10 leading-relaxed max-w-md"
+              key={src}
+              initial={false}
+              animate={{ opacity: index === heroIndex ? 1 : 0 }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0"
+              aria-hidden={index !== heroIndex}
             >
-              Careful prep, clean finishes, and five-star service for homes across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-accent-gold text-foreground font-paragraph font-semibold px-8 py-4 rounded-full hover:bg-accent-gold/90 hover:shadow-[0_6px_28px_rgba(240,180,41,0.45)] transition-all duration-300"
-              >
-                Get Free Estimate <ArrowRight className="w-4 h-4" />
-              </Link>
-              <a
-                href="tel:6012600061"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white font-paragraph font-semibold px-8 py-4 rounded-full hover:border-white/70 hover:bg-white/5 transition-all duration-300"
-              >
-                <Phone className="w-4 h-4" />
-                (601) 260-0061
-              </a>
+              <Image
+                src={src}
+                alt=""
+                width={1600}
+                className="h-full w-full object-cover"
+              />
             </motion.div>
+          ))}
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,22,41,0.90)_0%,rgba(8,22,41,0.76)_42%,rgba(8,22,41,0.48)_68%,rgba(8,22,41,0.68)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,24,43,0.18)_0%,rgba(10,24,43,0.34)_45%,rgba(10,24,43,0.82)_100%)]" />
+        </div>
 
-            {/* Five-star trust badge */}
+        <div className="relative mx-auto flex min-h-screen max-w-[100rem] items-end px-6 pb-12 pt-32 lg:px-16 lg:pb-16 lg:pt-40">
+          <div className="grid w-full gap-10 lg:grid-cols-[minmax(0,1.25fr)_22rem] lg:items-end">
+            <div className="max-w-4xl rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(8,22,41,0.28)_0%,rgba(8,22,41,0.46)_100%)] p-6 backdrop-blur-[3px] sm:p-8 lg:p-10">
+              <p className="mb-6 font-paragraph text-xs font-semibold uppercase tracking-[0.32em] text-accent-gold">
+                Flowood, Mississippi
+              </p>
+
+              <h1 className="mb-6 max-w-4xl font-heading text-4xl leading-[0.96] text-white sm:text-5xl lg:text-6xl xl:text-[4.9rem]">
+                High-end painting work for homes that deserve a cleaner finish.
+              </h1>
+
+              <p className="mb-10 max-w-2xl font-paragraph text-base leading-relaxed text-white/88 lg:text-lg">
+                Careful prep, crisp lines, and dependable service for homeowners across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
+              </p>
+
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded bg-accent-gold px-8 py-4 font-paragraph font-semibold text-foreground transition-colors hover:bg-accent-gold/90"
+                >
+                  Get Free Estimate <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a
+                  href="tel:6012600061"
+                  className="inline-flex items-center justify-center gap-2 rounded border-2 border-white/30 px-8 py-4 font-paragraph font-semibold text-white transition-colors hover:border-white/65"
+                >
+                  <Phone className="h-4 w-4" />
+                  (601) 260-0061
+                </a>
+              </div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.65 }}
-              className="mt-10 flex items-center gap-3"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="grid gap-3 rounded-[1.75rem] border border-white/12 bg-white/10 p-4 backdrop-blur-md"
             >
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-accent-gold text-accent-gold" />
+              {[
+                'Interior and exterior painting',
+                'Sheet rock repair and pressure washing',
+                'Free estimates and five-star local service',
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3 rounded-2xl bg-white/8 px-4 py-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-gold" />
+                  <p className="font-paragraph text-sm leading-relaxed text-white/86">{item}</p>
+                </div>
+              ))}
+
+              <div className="flex items-center gap-2 px-2 pt-1">
+                {siteImages.heroSlides.map((_, index) => (
+                  <button
+                    key={`hero-dot-${index}`}
+                    type="button"
+                    onClick={() => setHeroIndex(index)}
+                    className="cursor-pointer p-1"
+                    aria-label={`Show hero image ${index + 1}`}
+                  >
+                    <span
+                      className={`block h-2.5 rounded-full transition-all duration-300 ${
+                        index === heroIndex ? 'w-8 bg-accent-gold' : 'w-2.5 bg-white/40 hover:bg-white/70'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
-              <span className="font-paragraph text-xs text-white/50 uppercase tracking-widest">5.0 Google Rating</span>
             </motion.div>
           </div>
         </div>
-
-        {/* Right: photo */}
-        <motion.div
-          initial={{ opacity: 0, scale: 1.04 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="relative min-h-[50vh] lg:min-h-0 overflow-hidden"
-        >
-          <Image
-            src={siteImages.hero}
-            alt="Will Rayners Custom Painting"
-            width={1200}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          {/* Gradient overlay on left edge */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-primary/30 to-transparent" />
-          {/* Gold accent bar */}
-          <motion.div
-            initial={{ scaleY: 0 }}
-            animate={{ scaleY: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute left-0 top-0 bottom-0 w-1 bg-accent-gold origin-top"
-          />
-        </motion.div>
       </section>
 
       {/* ─── STATS STRIP ─── */}
@@ -332,45 +317,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── FEATURED REVIEW ─── */}
+      {/* ─── REVIEW STRIP ─── */}
       {featuredReview && (
-        <section className="py-20 lg:py-28 bg-accent-gold relative overflow-hidden">
-          {/* Large decorative quote marks */}
-          <div
-            className="absolute top-0 left-6 font-heading text-[16rem] lg:text-[22rem] text-foreground/[0.06] leading-none select-none pointer-events-none"
-            aria-hidden="true"
-          >
-            &#8220;
-          </div>
-          <div
-            className="absolute bottom-0 right-6 font-heading text-[16rem] lg:text-[22rem] text-foreground/[0.06] leading-none select-none pointer-events-none rotate-180"
-            aria-hidden="true"
-          >
-            &#8220;
-          </div>
-
-          <div className="max-w-4xl mx-auto px-6 lg:px-16 text-center relative z-10">
+        <section className="bg-[#f6efe2] py-20 lg:py-24">
+          <div className="mx-auto max-w-[100rem] px-6 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="grid gap-8 rounded-[2rem] border border-[#e5d8ba] bg-white px-6 py-8 shadow-[0_24px_80px_rgba(28,53,87,0.08)] lg:grid-cols-[minmax(0,1.2fr)_17rem] lg:px-10 lg:py-10"
             >
-              <div className="flex justify-center gap-1 mb-8">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 text-foreground fill-foreground" />
-                ))}
+              <div>
+                <p className="mb-3 font-paragraph text-xs font-semibold uppercase tracking-[0.28em] text-accent-gold">
+                  From Local Homeowners
+                </p>
+                <div className="mb-5 flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-accent-gold text-accent-gold" />
+                  ))}
+                </div>
+                <blockquote className="mb-5 max-w-4xl font-heading text-2xl leading-snug text-foreground lg:text-4xl">
+                  "{featuredReview.reviewText}"
+                </blockquote>
+                <p className="font-paragraph text-sm font-semibold uppercase tracking-[0.18em] text-secondary">
+                  {featuredReview.customerName} · {featuredReview.reviewSource}
+                </p>
               </div>
-              <blockquote className="font-heading text-3xl lg:text-5xl text-foreground italic leading-snug mb-8">
-                "{featuredReview.reviewText}"
-              </blockquote>
-              <p className="font-paragraph text-sm font-semibold uppercase tracking-widest text-foreground/70">
-                — {featuredReview.customerName}, {featuredReview.reviewSource}
-              </p>
-              <div className="mt-10">
+
+              <div className="flex flex-col justify-between gap-6 rounded-[1.5rem] bg-muted p-5">
+                <div>
+                  <p className="mb-2 font-paragraph text-xs font-semibold uppercase tracking-[0.24em] text-primary/60">
+                    Need painting, repairs, or cleanup?
+                  </p>
+                  <p className="font-paragraph text-sm leading-relaxed text-secondary">
+                    We keep the process simple with clear estimates, steady communication, and work that respects your home.
+                  </p>
+                </div>
                 <Link
                   to="/reviews"
-                  className="inline-flex items-center gap-2 font-paragraph text-sm font-semibold text-foreground underline underline-offset-4 hover:text-foreground/70 transition-colors"
+                  className="inline-flex cursor-pointer items-center gap-2 font-paragraph text-sm font-semibold text-primary transition-colors hover:text-primary/70"
                 >
                   Read All Reviews <ArrowRight className="w-4 h-4" />
                 </Link>

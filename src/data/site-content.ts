@@ -11,6 +11,12 @@ const primaryServiceArea =
 export const siteImages = {
   logo: "/images/will-rayners/branding/business-card.png",
   hero: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
+  heroSlides: [
+    "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
+    "/images/will-rayners/jobs/full-exterior-white-finish/02-after.png",
+    "/images/will-rayners/jobs/cabinet-painting/01-finished-kitchen.png",
+    "/images/will-rayners/jobs/pressure-washing-walkway/02-after.png",
+  ],
   aboutOwner: "/images/will-rayners/jobs/post-frame-building/07-finished-side.png",
   aboutWork: "/images/will-rayners/jobs/nick-cappony/03-entry-door.png",
   galleryFallback: "/images/will-rayners/jobs/nick-cappony/02-driveway-front-view.png",
