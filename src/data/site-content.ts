@@ -96,7 +96,7 @@ export const paintingServices: PaintingServices[] = [
 ];
 
 export const nickCapponyProject = {
-  title: "Nick Cappony Exterior Paint & Carpentry Project",
+  title: "Exterior Paint & Carpentry Project",
   location: "Central Mississippi",
   summary:
     "A full exterior refresh featuring new paint, trim detailing, a replacement fiberglass door, and polished carpentry work across multiple elevations of the home.",
@@ -149,7 +149,7 @@ export const postFrameBuildingProject = {
 export const projectGallery: ProjectGallery[] = [
   {
     _id: "wr-project-nick-cappony",
-    projectTitle: "Nick Cappony Exterior Paint & Carpentry Project",
+    projectTitle: "Exterior Paint & Carpentry Project",
     beforePhoto: "/images/will-rayners/jobs/nick-cappony/02-driveway-front-view.png",
     afterPhoto: "/images/will-rayners/jobs/nick-cappony/01-front-lawn-view.png",
     projectDescription:

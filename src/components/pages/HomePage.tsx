@@ -16,10 +16,10 @@ import {
 import { useCountUp } from '@/hooks/useCountUp';
 
 function StatCounter({ value, label, icon }: { value: string; label: string; icon: React.ReactNode }) {
-  const isNumeric = /^\d+/.test(value);
+  const isWholeNumberStat = /^\d+\+?$/.test(value);
   const numericPart = parseInt(value.replace(/\D/g, ''), 10);
-  const suffix = value.replace(/^\d+/, '');
-  const { count, ref } = useCountUp(isNumeric ? numericPart : 0);
+  const suffix = value.replace(/^\d+/, '') || '';
+  const { count, ref } = useCountUp(isWholeNumberStat ? numericPart : 0);
 
   return (
     <motion.div
@@ -32,7 +32,7 @@ function StatCounter({ value, label, icon }: { value: string; label: string; ico
     >
       <span className="text-accent-gold mb-1">{icon}</span>
       <span className="font-heading text-3xl lg:text-4xl text-white">
-        {isNumeric ? `${count}${suffix}` : value}
+        {isWholeNumberStat ? `${count}${suffix}` : value}
       </span>
       <span className="font-paragraph text-xs uppercase tracking-widest text-white/50">{label}</span>
     </motion.div>
