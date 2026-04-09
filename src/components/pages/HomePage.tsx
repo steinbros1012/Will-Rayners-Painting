@@ -95,22 +95,22 @@ export default function HomePage() {
               />
             </motion.div>
           ))}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,49,0.52)_0%,rgba(11,28,49,0.34)_38%,rgba(11,28,49,0.12)_68%,rgba(11,28,49,0.28)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(10,24,43,0.10)_45%,rgba(10,24,43,0.34)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,28,49,0.64)_0%,rgba(11,28,49,0.46)_38%,rgba(11,28,49,0.18)_68%,rgba(11,28,49,0.28)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04)_0%,rgba(10,24,43,0.08)_45%,rgba(10,24,43,0.26)_100%)]" />
         </div>
 
         <div className="relative mx-auto flex min-h-screen max-w-[100rem] items-end px-6 pb-12 pt-32 lg:px-16 lg:pb-16 lg:pt-40">
           <div className="grid w-full gap-10 lg:grid-cols-[minmax(0,1.25fr)_22rem] lg:items-end">
-            <div className="max-w-4xl rounded-[2rem] border border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.76)_0%,rgba(245,247,250,0.90)_100%)] p-6 shadow-[0_28px_100px_rgba(10,24,43,0.18)] backdrop-blur-md sm:p-8 lg:p-10">
+            <div className="max-w-4xl rounded-[2rem] border border-white/14 bg-[linear-gradient(180deg,rgba(9,24,42,0.52)_0%,rgba(9,24,42,0.36)_100%)] p-6 shadow-[0_28px_100px_rgba(10,24,43,0.12)] backdrop-blur-xl sm:p-8 lg:p-10">
               <p className="mb-6 font-paragraph text-xs font-semibold uppercase tracking-[0.32em] text-accent-gold">
                 Flowood, Mississippi
               </p>
 
-              <h1 className="mb-6 max-w-4xl font-heading text-4xl leading-[0.96] text-primary sm:text-5xl lg:text-6xl xl:text-[4.9rem]">
+              <h1 className="mb-6 max-w-4xl font-heading text-4xl leading-[0.96] text-white sm:text-5xl lg:text-6xl xl:text-[4.9rem]">
                 High-end painting work for homes that deserve a cleaner finish.
               </h1>
 
-              <p className="mb-10 max-w-2xl font-paragraph text-base leading-relaxed text-foreground/82 lg:text-lg">
+              <p className="mb-10 max-w-2xl font-paragraph text-base leading-relaxed text-white/82 lg:text-lg">
                 Careful prep, crisp lines, and dependable service for homeowners across Flowood, Pearl, Brandon, Ridgeland, Madison, Gluckstadt, Crystal Springs, Jackson, and nearby communities.
               </p>
 
@@ -123,7 +123,7 @@ export default function HomePage() {
                 </Link>
                 <a
                   href="tel:6012600061"
-                  className="inline-flex items-center justify-center gap-2 rounded border-2 border-primary/18 bg-white/55 px-8 py-4 font-paragraph font-semibold text-primary transition-colors hover:border-primary/35 hover:bg-white/80"
+                  className="inline-flex items-center justify-center gap-2 rounded border border-white/20 bg-white/8 px-8 py-4 font-paragraph font-semibold text-white transition-colors hover:border-white/38 hover:bg-white/12"
                 >
                   <Phone className="h-4 w-4" />
                   (601) 260-0061
@@ -135,16 +135,16 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="grid gap-3 rounded-[1.75rem] border border-white/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.72)_0%,rgba(244,247,251,0.88)_100%)] p-4 shadow-[0_20px_60px_rgba(10,24,43,0.14)] backdrop-blur-md"
+              className="grid gap-3 rounded-[1.75rem] border border-white/16 bg-[linear-gradient(180deg,rgba(9,24,42,0.46)_0%,rgba(9,24,42,0.30)_100%)] p-4 shadow-[0_20px_60px_rgba(10,24,43,0.10)] backdrop-blur-xl"
             >
               {[
                 'Interior and exterior painting',
                 'Sheet rock repair and pressure washing',
                 'Free estimates and five-star local service',
               ].map((item) => (
-                <div key={item} className="flex items-start gap-3 rounded-2xl bg-white/58 px-4 py-3">
+                <div key={item} className="flex items-start gap-3 rounded-2xl bg-white/6 px-4 py-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent-gold" />
-                  <p className="font-paragraph text-sm leading-relaxed text-foreground/82">{item}</p>
+                  <p className="font-paragraph text-sm leading-relaxed text-white/84">{item}</p>
                 </div>
               ))}
 
@@ -159,7 +159,7 @@ export default function HomePage() {
                   >
                     <span
                       className={`block h-2.5 rounded-full transition-all duration-300 ${
-                        index === heroIndex ? 'w-8 bg-accent-gold' : 'w-2.5 bg-white/40 hover:bg-white/70'
+                        index === heroIndex ? 'w-8 bg-accent-gold' : 'w-2.5 bg-white/28 hover:bg-white/60'
                       }`}
                     />
                   </button>
